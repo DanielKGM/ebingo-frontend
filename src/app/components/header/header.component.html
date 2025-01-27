@@ -1,1 +1,14 @@
-<p>header works!</p>
+<header class="relative flex justify-between items-center px-4 mb-4">
+  <div class="flex items-center space-x-4">
+    <ng-content select="[left-content]"></ng-content>
+  </div>
+
+  <div class="text-center">
+    <h1 class="text-7xl">eBingo</h1>
+    <span>Jogos de bingo online</span>
+  </div>
+
+  <div class="flex items-center space-x-4">
+    <ng-content select="[right-content]"></ng-content>
+  </div>
+</header>

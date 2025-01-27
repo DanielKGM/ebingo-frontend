@@ -1,4 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --dk-or: 213, 45, 0;
+  --or: 239, 118, 39;
+  --lt-or: 255, 154, 86;
+  --wh: 255, 255, 255;
+  --pink: 209, 98, 164;
+  --du-pink: 181, 86, 144;
+  --dk-rose: 163, 2, 98;
+
+  --title-font: lust-stencil, serif;
+  --accent-font: "Karla", sans-serif;
+  --body-font: "Literata", serif;
+  --alt-font: cofo-sans-mono-variable, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: rgb(181, 86, 144);
+  background: url(https://assets.codepen.io/2945273/noisy-texture-100x100-o11-d15-c-ffffff-t1.png),
+    linear-gradient(
+      165deg,
+      rgba(var(--dk-rose), 1) 0%,
+      rgba(var(--lt-or), 1) 60%,
+      rgba(var(--or), 1) 100%
+    );
+  height: 100vh;
+  margin: auto;
+  max-width: 70vw;
+  padding-top: 2.5rem;
+  background-repeat: repeat;
+  background-blend-mode: soft-light;
+}
