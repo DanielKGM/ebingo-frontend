@@ -8,10 +8,10 @@
     @if (hasTwoContents()) {
     <div class="grid grid-cols-2 {{ divide() }}">
       <div class="p-4">
-        <ng-content select="[content-one]"></ng-content>
+        <ng-content select="[left-content]"></ng-content>
       </div>
       <div class="p-4">
-        <ng-content select="[content-two]"></ng-content>
+        <ng-content select="[right-content]"></ng-content>
       </div>
     </div>
     } @else {
@@ -20,4 +20,9 @@
     </div>
     }
   </mat-card-content>
+  @if(hasContentFooter()){
+  <mat-card-footer class="text-center pb-4 px-4">
+    <ng-content select="[content-footer]"></ng-content>
+  </mat-card-footer>
+  }
 </mat-card>

@@ -3,9 +3,17 @@
     <mat-icon>assignment_turned_in</mat-icon>Como jogar?
   </button>
 </app-header>
-<app-main [hasTwoContents]="false" [hasContentTitle]="true">
+<app-main
+  [hasTwoContents]="false"
+  [hasContentTitle]="true"
+  [hasContentFooter]="false"
+>
   <!-- TITULO -->
-  <app-section-title title="Lista de Jogos" [goBackButton]="true" content-title>
+  <app-section-title
+    title="Lista de Jogos"
+    [goBackButton]="false"
+    content-title
+  >
     <!-- PESQUISA -->
     <mat-form-field appearance="outline" left-content>
       <mat-label>Pesquisar</mat-label>

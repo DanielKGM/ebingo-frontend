@@ -1,7 +1,11 @@
 <app-header [showSlogan]="true"> </app-header>
-<app-main [hasTwoContents]="true" [hasContentTitle]="false">
+<app-main
+  [hasTwoContents]="true"
+  [hasContentTitle]="false"
+  [hasContentFooter]="false"
+>
   <!-- Formulário -->
-  <div content-one>
+  <div left-content>
     <app-section-title
       title="Logue Aqui"
       [goBackButton]="false"
@@ -43,6 +47,6 @@
     </app-action-buttons>
   </div>
   <!-- Ilustração -->
-  <div content-two>Conteúdo 2</div>
+  <div right-content>Conteúdo 2</div>
 </app-main>
 <app-footer> </app-footer>

@@ -1,14 +1,59 @@
 <app-header [showSlogan]="false"> </app-header>
-<app-main [hasTwoContents]="true" [hasContentTitle]="true">
+<app-main
+  [hasTwoContents]="true"
+  [hasContentTitle]="true"
+  [hasContentFooter]="true"
+>
   <!-- TITULO -->
   <h1 content-title>Configurar Jogo</h1>
   <!-- Dados -->
-  <div content-one>
+  <div left-content>
     <h2>Dados</h2>
+    <!-- Data de Início -->
+    <mat-form-field>
+      <mat-label>Nome da Sala</mat-label>
+      <input matInput />
+      <mat-hint>Nome da sessão que será exibido aos jogadores</mat-hint>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-label>Data de Início</mat-label>
+      <input matInput [matDatepicker]="datepicker" />
+      <mat-datepicker #datepicker />
+      <mat-datepicker-toggle [for]="datepicker" matSuffix />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Horário de Início</mat-label>
+      <input matInput [matTimepicker]="customPicker" />
+      <mat-timepicker-toggle matIconSuffix [for]="customPicker" />
+      <mat-timepicker #customPicker />
+    </mat-form-field>
+    <!-- Prêmio -->
+    <h2>Prêmio</h2>
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <input matInput />
+      <mat-icon matSuffix>emoji_events</mat-icon>
+      <mat-hint>Descreva o que é o prêmio</mat-hint>
+    </mat-form-field>
   </div>
   <!-- Regras -->
-  <div content-two>
+  <div right-content>
     <h2>Regras</h2>
   </div>
+  <!-- Ações -->
+  <app-action-buttons [showSeparator]="false" content-footer>
+    <!-- Primeiro botão -->
+    <button mat-stroked-button button1 routerLink="/jogos">
+      <mat-icon>close</mat-icon>
+      Descartar
+    </button>
+    <!-- Primeiro botão -->
+    <button mat-stroked-button button2 routerLink="/jogos">
+      <mat-icon>play_arrow</mat-icon>
+      Iniciar
+    </button>
+  </app-action-buttons>
 </app-main>
 <app-footer> </app-footer>

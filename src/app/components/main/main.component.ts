@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class MainComponent {
   hasContentTitle = input.required();
+  hasContentFooter = input.required();
   hasTwoContents = input.required();
   divide = input(); // 'divide-x divide-gray-400'
 }
