@@ -1,1 +1,45 @@
-<p>cadastro works!</p>
+<app-header [showSlogan]="true"> </app-header>
+<app-main [hasTwoContents]="true" [hasContentTitle]="false">
+  <!-- Formulário -->
+  <div content-one>
+    <app-section-title
+      title="Junte-se a nós!"
+      [goBackButton]="true"
+    ></app-section-title>
+    <!-- APELIDO -->
+    <mat-form-field>
+      <mat-icon matPrefix>face</mat-icon>
+      <mat-label>Apelido</mat-label>
+      <input matInput />
+      <mat-hint>Como você gostaria de ser chamado(a)?</mat-hint>
+    </mat-form-field>
+    <!-- EMAIL -->
+    <mat-form-field>
+      <mat-icon matPrefix>alternate_email</mat-icon>
+      <mat-label>Email</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <!-- SENHA -->
+    <mat-form-field>
+      <mat-icon matPrefix>key</mat-icon>
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" />
+    </mat-form-field>
+    <!-- SENHA -->
+    <mat-form-field>
+      <mat-icon matPrefix>key</mat-icon>
+      <mat-label>Confirmar Senha</mat-label>
+      <input matInput type="password" />
+    </mat-form-field>
+    <!-- Ações -->
+    <app-action-buttons [showSeparator]="false">
+      <!-- Primeiro botão -->
+      <button mat-stroked-button button1 routerLink="/jogos">
+        Finalizar Inscrição
+      </button>
+    </app-action-buttons>
+  </div>
+  <!-- Ilustração -->
+  <div content-two>Conteúdo 2</div>
+</app-main>
+<app-footer> </app-footer>

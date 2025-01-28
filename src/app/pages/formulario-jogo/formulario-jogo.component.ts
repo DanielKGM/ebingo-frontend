@@ -11,9 +11,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActionButtonsComponent } from '../../components/action-buttons/action-buttons.component';
 import { RouterLink } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'app-cadastro',
+  selector: 'app-formulario-jogo',
   imports: [
     SectionTitleComponent,
     HeaderComponent,
@@ -25,10 +27,11 @@ import { RouterLink } from '@angular/router';
     MatInputModule,
     MatButtonModule,
     ActionButtonsComponent,
+    MatSelectModule,
     RouterLink,
+    MatCardModule,
   ],
-  templateUrl: './cadastro.component.html',
-  styleUrl: './cadastro.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './formulario-jogo.component.html',
+  styleUrl: './formulario-jogo.component.scss',
 })
-export class CadastroComponent {}
+export class FormularioJogoComponent {}

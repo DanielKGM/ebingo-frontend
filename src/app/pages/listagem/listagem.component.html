@@ -1,0 +1,39 @@
+<app-header [showSlogan]="false">
+  <button mat-button left-content>
+    <mat-icon>assignment_turned_in</mat-icon>Como jogar?
+  </button>
+</app-header>
+<app-main [hasTwoContents]="false" [hasContentTitle]="true">
+  <!-- TITULO -->
+  <app-section-title title="Lista de Jogos" [goBackButton]="true" content-title>
+    <!-- PESQUISA -->
+    <mat-form-field appearance="outline" left-content>
+      <mat-label>Pesquisar</mat-label>
+      <input matInput />
+      <mat-icon matPrefix>search</mat-icon>
+    </mat-form-field>
+    <div right-content>
+      <!-- NOVO JOGO -->
+      <button mat-stroked-button button2 routerLink="/jogos/novo">
+        <mat-icon>add</mat-icon>
+        Novo Jogo
+      </button>
+      <!-- FILTRO -->
+      <mat-form-field>
+        <mat-label>Filtrar Jogos</mat-label>
+        <mat-select>
+          <mat-option value="0">Não Iniciados</mat-option>
+          <mat-option value="1">Encerrados</mat-option>
+          <mat-option value="2">Futuros</mat-option>
+          <mat-option value="3">Participados</mat-option>
+          <mat-option value="4">Criados</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </app-section-title>
+  <!-- LISTAGEM -->
+  <mat-card class="!bg-gray-300">
+    <mat-card-content> a </mat-card-content>
+  </mat-card>
+</app-main>
+<app-footer> </app-footer>

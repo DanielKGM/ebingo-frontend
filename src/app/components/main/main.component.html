@@ -1,3 +1,23 @@
-<mat-card>
-  <mat-card-content>Simple card</mat-card-content>
+<mat-card class="!overflow-hidden">
+  @if(hasContentTitle()){
+  <mat-card-title class="text-center pt-4 px-4">
+    <ng-content select="[content-title]"></ng-content>
+  </mat-card-title>
+  }
+  <mat-card-content class="!p-0">
+    @if (hasTwoContents()) {
+    <div class="grid grid-cols-2 {{ divide() }}">
+      <div class="p-4">
+        <ng-content select="[content-one]"></ng-content>
+      </div>
+      <div class="p-4">
+        <ng-content select="[content-two]"></ng-content>
+      </div>
+    </div>
+    } @else {
+    <div class="p-4">
+      <ng-content></ng-content>
+    </div>
+    }
+  </mat-card-content>
 </mat-card>

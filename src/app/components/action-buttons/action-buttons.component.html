@@ -1,0 +1,13 @@
+<div class="button-separator-container">
+  <ng-content select="[button1]"></ng-content>
+
+  @if (showSeparator()) {
+  <div class="separator">
+    <span class="line"></span>
+    <span class="or">OU</span>
+    <span class="line"></span>
+  </div>
+  }
+
+  <ng-content select="[button2]"></ng-content>
+</div>
