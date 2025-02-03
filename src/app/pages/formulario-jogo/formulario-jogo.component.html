@@ -1,59 +1,86 @@
-<app-header [showSlogan]="false"> </app-header>
-<app-main
-  [hasTwoContents]="true"
-  [hasContentTitle]="true"
-  [hasContentFooter]="true"
->
-  <!-- TITULO -->
-  <h1 content-title>Configurar Jogo</h1>
-  <!-- Dados -->
-  <div left-content>
-    <h2>Dados</h2>
-    <!-- Data de Início -->
-    <mat-form-field>
-      <mat-label>Nome da Sala</mat-label>
-      <input matInput />
-      <mat-hint>Nome da sessão que será exibido aos jogadores</mat-hint>
-    </mat-form-field>
-    <br />
-    <mat-form-field>
-      <mat-label>Data de Início</mat-label>
-      <input matInput [matDatepicker]="datepicker" />
-      <mat-datepicker #datepicker />
-      <mat-datepicker-toggle [for]="datepicker" matSuffix />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Horário de Início</mat-label>
-      <input matInput [matTimepicker]="customPicker" />
-      <mat-timepicker-toggle matIconSuffix [for]="customPicker" />
-      <mat-timepicker #customPicker />
-    </mat-form-field>
-    <!-- Prêmio -->
-    <h2>Prêmio</h2>
-    <mat-form-field>
-      <mat-label>Descrição</mat-label>
-      <input matInput />
-      <mat-icon matSuffix>emoji_events</mat-icon>
-      <mat-hint>Descreva o que é o prêmio</mat-hint>
-    </mat-form-field>
-  </div>
-  <!-- Regras -->
-  <div right-content>
-    <h2>Regras</h2>
-  </div>
-  <!-- Ações -->
-  <app-action-buttons [showSeparator]="false" content-footer>
-    <!-- Primeiro botão -->
-    <button mat-stroked-button button1 routerLink="/jogos">
-      <mat-icon>close</mat-icon>
-      Descartar
-    </button>
-    <!-- Primeiro botão -->
-    <button mat-stroked-button button2 routerLink="/jogos">
-      <mat-icon>play_arrow</mat-icon>
-      Iniciar
-    </button>
-  </app-action-buttons>
-</app-main>
-<app-footer> </app-footer>
+<span appTemplate>
+  <app-header [showSlogan]="false"> </app-header>
+  <app-main [hasFooterContent]="true" [hasTitleContent]="true">
+    <!-- TITULO -->
+    <app-page-title
+      [hasBackButton]="false"
+      title="Configurar Novo Jogo"
+      title-content
+      class="w-full"
+    ></app-page-title>
+    <!-- Dados -->
+    <form>
+      <fieldset>
+        <legend>1. Informações da Partida</legend>
+        <p>
+          <mat-form-field style="flex-grow: 3">
+            <mat-label>Nome da Sala</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Data de Início</mat-label>
+            <input matInput [matDatepicker]="datepicker" />
+            <mat-datepicker #datepicker></mat-datepicker>
+            <mat-datepicker-toggle
+              [for]="datepicker"
+              matSuffix
+            ></mat-datepicker-toggle>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Horário de Início</mat-label>
+            <input matInput [matTimepicker]="customPicker" />
+            <mat-timepicker-toggle
+              matIconSuffix
+              [for]="customPicker"
+            ></mat-timepicker-toggle>
+            <mat-timepicker #customPicker></mat-timepicker>
+          </mat-form-field>
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>2. Prêmio <mat-icon>emoji_events</mat-icon></legend>
+        <p>
+          <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <input matInput />
+            <mat-icon matSuffix>emoji_events</mat-icon>
+          </mat-form-field>
+        </p>
+      </fieldset>
+      <!-- Regras -->
+      <fieldset>
+        <legend>3. Regras <mat-icon>gavel</mat-icon></legend>
+        <p>
+          <mat-form-field>
+            <mat-label>Tamanho da Cartela</mat-label>
+            <mat-select>
+              <mat-option value="10">10 números</mat-option>
+              <mat-option value="15">15 números</mat-option>
+              <mat-option value="24">24 números</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-slide-toggle> Preenchimento manual da cartela </mat-slide-toggle>
+          <mat-icon
+            matTooltip="Marcando esta opção, um jogador deve estar presente na sala e marcar manualmente todos os números para vencer"
+            matTooltipPosition="below"
+            >help</mat-icon
+          >
+        </p>
+      </fieldset>
+    </form>
+    <!-- Ações -->
+    <app-action-buttons [showSeparator]="false" footer-content>
+      <!-- Primeiro botão -->
+      <button mat-flat-button button1 routerLink="/jogos">
+        <mat-icon>play_arrow</mat-icon>
+        Iniciar
+      </button>
+      <!-- Segundo botão -->
+      <button mat-flat-button button2 routerLink="/jogos">
+        <mat-icon>close</mat-icon>
+        Descartar
+      </button>
+    </app-action-buttons>
+  </app-main>
+  <app-footer> </app-footer>
+</span>

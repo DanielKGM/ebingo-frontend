@@ -1,14 +1,12 @@
 import { MainComponent } from './../../components/main/main.component';
-import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-// import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { SectionTitleComponent } from '../../components/section-title/section-title.component';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatTimepickerModule } from '@angular/material/timepicker';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActionButtonsComponent } from '../../components/action-buttons/action-buttons.component';
@@ -17,11 +15,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { Location } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { PageTitleComponent } from '../../components/page-title/page-title.component';
 
 @Component({
   selector: 'app-formulario-jogo',
   imports: [
-    SectionTitleComponent,
     HeaderComponent,
     MainComponent,
     FooterComponent,
@@ -36,6 +35,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatDatepickerModule,
     MatCardModule,
     MatTimepickerModule,
+    MatSlideToggleModule,
+    MatTooltipModule,
+    PageTitleComponent,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './formulario-jogo.component.html',

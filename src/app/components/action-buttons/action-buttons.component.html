@@ -1,4 +1,7 @@
-<div class="button-separator-container">
+<div
+  class="button-separator-container"
+  [ngClass]="{ '!flex-row': !showSeparator() }"
+>
   <ng-content select="[button1]"></ng-content>
 
   @if (showSeparator()) {

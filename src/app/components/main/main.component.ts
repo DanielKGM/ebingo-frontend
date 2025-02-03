@@ -1,15 +1,16 @@
+import { NgClass } from '@angular/common';
 import { Component, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-main',
-  imports: [MatCardModule],
+  standalone: true,
+  imports: [MatCardModule, NgClass],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent {
-  hasContentTitle = input.required();
-  hasContentFooter = input.required();
-  hasTwoContents = input.required();
-  divide = input(); // 'divide-x divide-gray-400'
+  hasTitleContent = input(false);
+  hasTwoContents = input(false);
+  hasFooterContent = input(false);
 }

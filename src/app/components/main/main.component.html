@@ -1,28 +1,32 @@
-<mat-card class="!overflow-hidden">
-  @if(hasContentTitle()){
-  <mat-card-title class="text-center pt-4 px-4">
-    <ng-content select="[content-title]"></ng-content>
-  </mat-card-title>
-  }
-  <mat-card-content class="!p-0">
-    @if (hasTwoContents()) {
-    <div class="grid grid-cols-2 {{ divide() }}">
-      <div class="p-4">
-        <ng-content select="[left-content]"></ng-content>
+<main class="h-full w-full">
+  <mat-card class="h-full" [ngClass]="{ 'px-4 py-8': !hasTwoContents() }">
+    @if (hasTwoContents() || hasTitleContent()) {
+    <mat-card-header
+      class="!p-0"
+      [ngClass]="{ 'h-full overflow-auto': hasTwoContents() }"
+    >
+      <ng-content select="[title-content]"></ng-content>
+      @if(hasTwoContents()){
+      <div
+        class="grid grid-cols-2 divide-x divide-[var(--mat-sys-outline)] !h-full w-full"
+      >
+        <div class="h-full w-full">
+          <ng-content select="[left-content]"></ng-content>
+        </div>
+        <div class="h-full w-full">
+          <ng-content select="[right-content]"></ng-content>
+        </div>
       </div>
-      <div class="p-4">
-        <ng-content select="[right-content]"></ng-content>
-      </div>
-    </div>
-    } @else {
-    <div class="p-4">
+      }
+    </mat-card-header>
+    } @if (!hasTwoContents()) {
+    <mat-card-content class="overflow-auto !p-4 rounded-lg bg-slate-400 h-full">
       <ng-content></ng-content>
-    </div>
+    </mat-card-content>
+    } @if(hasFooterContent()){
+    <mat-card-footer class="text-center pt-4">
+      <ng-content select="[footer-content]"></ng-content>
+    </mat-card-footer>
     }
-  </mat-card-content>
-  @if(hasContentFooter()){
-  <mat-card-footer class="text-center pb-4 px-4">
-    <ng-content select="[content-footer]"></ng-content>
-  </mat-card-footer>
-  }
-</mat-card>
+  </mat-card>
+</main>

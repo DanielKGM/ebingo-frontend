@@ -1,18 +1,28 @@
-<header class="relative flex justify-between items-center px-4 mb-4 text-white">
-  <div class="flex items-center space-x-4">
+<header class="relative text-white mx-4 text-center">
+  <div
+    class="flex items-center space-x-4 absolute left-0 top-0.5 -translate-y-0.5 h-full"
+  >
     <ng-content select="[left-content]"></ng-content>
   </div>
-
-  <div class="text-center">
-    @if (showSlogan()) {
-    <h1 class="text-7xl mb-1.5">eBingo</h1>
-    <span>Jogos de bingo online</span>
-    } @else {
-    <h1 class="text-6xl">eBingo</h1>
-    }
-  </div>
-
-  <div class="flex items-center space-x-4">
+  <div
+    class="flex items-center space-x-4 absolute right-0 top-0.5 -translate-y-0.5 h-full"
+  >
     <ng-content select="[right-content]"></ng-content>
   </div>
+
+  <h1
+    class="logo mb-1.5"
+    [style.--bsize]="ballSize()"
+    [style.--txtsize]="textSize()"
+  >
+    <span class="ball">e</span>
+    <span class="ball" [style.--bcolor]="'purple'">B</span>
+    <span class="ball" [style.--bcolor]="'green'">I</span>
+    <span class="ball" [style.--bcolor]="'#de4d86'">N</span>
+    <span class="ball" [style.--bcolor]="'gray'">G</span>
+    <span class="ball" [style.--bcolor]="'blue'">O</span>
+  </h1>
+  @if (showSlogan()) {
+  <span class="text-lg font-bold">PARTIDAS DE BINGO ONLINE</span>
+  }
 </header>

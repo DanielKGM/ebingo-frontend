@@ -1,3 +1,4 @@
+@use "@angular/material" as mat;
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
@@ -11,11 +12,16 @@
   --pink: 209, 98, 164;
   --du-pink: 181, 86, 144;
   --dk-rose: 163, 2, 98;
+  --content-font: Quicksand, sans-serif;
+  --logo-font: Sour Gummy, sans-serif;
+}
 
-  --title-font: lust-stencil, serif;
-  --accent-font: "Karla", sans-serif;
-  --body-font: "Literata", serif;
-  --alt-font: cofo-sans-mono-variable, sans-serif;
+.mdc-notched-outline__notch {
+  border-style: none;
+}
+
+.mat-mdc-icon-button {
+  line-height: normal;
 }
 
 html,
@@ -23,8 +29,25 @@ body {
   height: 100%;
 }
 
+/* Estilo do scroll no mat card */
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--mat-sys-outline);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  width: 70%;
+  font-family: var(--content-font);
   background: rgb(181, 86, 144);
   background: url(https://assets.codepen.io/2945273/noisy-texture-100x100-o11-d15-c-ffffff-t1.png),
     linear-gradient(
@@ -33,10 +56,41 @@ body {
       rgba(var(--lt-or), 1) 60%,
       rgba(var(--or), 1) 100%
     );
-  height: 100vh;
-  margin: auto;
-  max-width: 70vw;
-  padding-top: 2.5rem;
-  background-repeat: repeat;
+  overflow: hidden;
+  margin: 0 auto;
+  background-repeat: no-repeat;
   background-blend-mode: soft-light;
+  @include mat.theme(
+    (
+      color: mat.$violet-palette,
+      typography: (
+        var(--content-font),
+      ),
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      text-label-text-color: var(--mat-sys-surface),
+      text-state-layer-color: var(--mat-sys-surface),
+    )
+  );
+}
+
+[appTemplate] {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+  width: 100%;
+  padding: 2rem 0;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+[appTemplate] > :nth-child(2) {
+  flex-grow: 1;
+  overflow: auto;
+  min-height: 0;
 }

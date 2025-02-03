@@ -1,0 +1,14 @@
+<div class="relative mb-{{ pb() }}">
+  <h1 class="text-lg !text-center font-bold uppercase">
+    {{ title() }}
+  </h1>
+  @if(hasBackButton()){
+  <button
+    mat-icon-button
+    (click)="goBack()"
+    class="!absolute !left-0 !top-1/2 -translate-y-1/2"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  }
+</div>

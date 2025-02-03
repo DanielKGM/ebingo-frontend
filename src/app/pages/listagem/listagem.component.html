@@ -1,47 +1,47 @@
-<app-header [showSlogan]="false">
-  <button mat-button left-content>
-    <mat-icon>assignment_turned_in</mat-icon>Como jogar?
-  </button>
-</app-header>
-<app-main
-  [hasTwoContents]="false"
-  [hasContentTitle]="true"
-  [hasContentFooter]="false"
->
-  <!-- TITULO -->
-  <app-section-title
-    title="Lista de Jogos"
-    [goBackButton]="false"
-    content-title
-  >
+<div appTemplate>
+  <app-header [showSlogan]="false">
+    <button mat-button left-content>
+      <mat-icon>live_help</mat-icon>Como jogar?
+    </button>
+  </app-header>
+  <app-main [hasTitleContent]="true" class="map">
     <!-- PESQUISA -->
-    <mat-form-field appearance="outline" left-content>
-      <mat-label>Pesquisar</mat-label>
-      <input matInput />
-      <mat-icon matPrefix>search</mat-icon>
-    </mat-form-field>
-    <div right-content>
-      <!-- NOVO JOGO -->
-      <button mat-stroked-button button2 routerLink="/jogos/novo">
-        <mat-icon>add</mat-icon>
-        Novo Jogo
-      </button>
-      <!-- FILTRO -->
-      <mat-form-field>
-        <mat-label>Filtrar Jogos</mat-label>
-        <mat-select>
-          <mat-option value="0">Não Iniciados</mat-option>
-          <mat-option value="1">Encerrados</mat-option>
-          <mat-option value="2">Futuros</mat-option>
-          <mat-option value="3">Participados</mat-option>
-          <mat-option value="4">Criados</mat-option>
-        </mat-select>
+    <div
+      class="flex flex-row justify-between items-center w-full pb-4"
+      title-content
+    >
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Pesquisar</mat-label>
+        <input matInput />
+        <mat-icon matPrefix>search</mat-icon>
       </mat-form-field>
+      <!-- TITULO -->
+      <app-page-title
+        pb="0"
+        [hasBackButton]="false"
+        title="Listagem de jogos"
+      ></app-page-title>
+      <div class="flex h-full flex-row items-center gap-4 flex-shrink-2">
+        <!-- NOVO JOGO -->
+        <button mat-flat-button button2 routerLink="/jogos/novo">
+          <mat-icon>add</mat-icon>
+          Novo Jogo
+        </button>
+        <!-- FILTRO -->
+        <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <mat-label>Filtrar Jogos</mat-label>
+          <mat-select>
+            <mat-option value="0">Não Iniciados</mat-option>
+            <mat-option value="1">Encerrados</mat-option>
+            <mat-option value="2">Futuros</mat-option>
+            <mat-option value="3">Participados</mat-option>
+            <mat-option value="4">Criados</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-  </app-section-title>
-  <!-- LISTAGEM -->
-  <mat-card class="!bg-gray-300">
-    <mat-card-content> a </mat-card-content>
-  </mat-card>
-</app-main>
-<app-footer> </app-footer>
+    <!-- LISTAGEM -->
+    <p>Listagem</p>
+  </app-main>
+  <app-footer> </app-footer>
+</div>

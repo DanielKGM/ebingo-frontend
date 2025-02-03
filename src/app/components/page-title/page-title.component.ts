@@ -4,15 +4,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-section-title',
+  selector: 'app-page-title',
   imports: [MatButtonModule, MatIconModule],
-  templateUrl: './section-title.component.html',
-  styleUrl: './section-title.component.scss',
+  templateUrl: './page-title.component.html',
+  styleUrl: './page-title.component.scss',
 })
-export class SectionTitleComponent {
-  title = input.required<string>();
-  goBackButton = input.required<boolean>();
+export class PageTitleComponent {
   constructor(private readonly location: Location) {}
+  title = input.required<string>();
+  hasBackButton = input.required<boolean>();
+  pb = input('4');
 
   goBack(): void {
     this.location.back();

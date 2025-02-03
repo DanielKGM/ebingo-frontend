@@ -1,0 +1,50 @@
+<div appTemplate>
+  <app-header [showSlogan]="false"> </app-header>
+  <app-main [hasTwoContents]="true">
+    <div
+      left-content
+      class="flex flex-col h-full justify-between items-stretch px-16 py-8"
+    >
+      <app-page-title
+        title="Seu Perfil"
+        [hasBackButton]="true"
+      ></app-page-title>
+      <form>
+        <!-- APELIDO -->
+        <mat-form-field>
+          <mat-icon matPrefix>face</mat-icon>
+          <mat-label>Apelido</mat-label>
+          <input matInput value="Fulano da Silva" />
+        </mat-form-field>
+        <!-- EMAIL -->
+        <mat-form-field>
+          <mat-icon matPrefix>alternate_email</mat-icon>
+          <mat-label>Email</mat-label>
+          <input matInput value="fulano@gmail.com" disabled />
+        </mat-form-field>
+      </form>
+      <!-- Ações -->
+      <app-action-buttons [showSeparator]="false">
+        <!-- Primeiro botão -->
+        <button mat-flat-button button1>Salvar</button>
+        <button mat-flat-button button2 routerLink="/">
+          <mat-icon>person_off</mat-icon>Deletar Conta
+        </button>
+      </app-action-buttons>
+    </div>
+    <!-- Ilustração -->
+    <div right-content class="flex flex-col h-full justify-center px-16 py-8">
+      <app-page-title
+        title="Seus Prêmios"
+        [hasBackButton]="false"
+      ></app-page-title>
+      <mat-card class="!bg-gray-300 h-2/3">
+        <mat-card-content> a </mat-card-content>
+      </mat-card>
+      <button mat-stroked-button button1 class="mt-4" routerLink="/jogos">
+        <mat-icon>list</mat-icon>Jogos Participados
+      </button>
+    </div>
+  </app-main>
+  <app-footer> </app-footer>
+</div>

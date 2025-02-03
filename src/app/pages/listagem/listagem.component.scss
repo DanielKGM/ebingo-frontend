@@ -1,0 +1,19 @@
+@use "@angular/material" as mat;
+
+mat-form-field {
+  margin: 0;
+  padding: 0;
+}
+
+.map {
+  @include mat.theme(
+    (
+      density: -4,
+    )
+  );
+  @include mat.button-overrides(
+    (
+      filled-container-height: 30px,
+    )
+  );
+}
