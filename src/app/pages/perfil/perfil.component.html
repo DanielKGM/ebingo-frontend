@@ -1,5 +1,5 @@
 <div appTemplate>
-  <app-header [showSlogan]="false"> </app-header>
+  <app-header [showSlogan]="false" [showUserInfo]="true"> </app-header>
   <app-main [hasTwoContents]="true">
     <div
       left-content
@@ -33,15 +33,16 @@
       </app-action-buttons>
     </div>
     <!-- Ilustração -->
-    <div right-content class="flex flex-col h-full justify-center px-16 py-8">
+    <div right-content class="flex flex-col h-full justify-between px-16 py-8">
       <app-page-title
+        pb="0"
         title="Seus Prêmios"
         [hasBackButton]="false"
       ></app-page-title>
-      <mat-card class="!bg-gray-300 h-2/3">
+      <mat-card class="!bg-gray-300 h-1/2">
         <mat-card-content> a </mat-card-content>
       </mat-card>
-      <button mat-stroked-button button1 class="mt-4" routerLink="/jogos">
+      <button mat-stroked-button button1 routerLink="/jogos">
         <mat-icon>list</mat-icon>Jogos Participados
       </button>
     </div>

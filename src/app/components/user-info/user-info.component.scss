@@ -1,6 +1,15 @@
-@use "@angular/material" as mat;
+a:hover {
+  text-decoration: underline;
+}
 
-footer {
+/*
+@use "@angular/material" as mat;
+.user-info {
+  @include mat.theme(
+    (
+      density: -4,
+    )
+  );
   @include mat.button-overrides(
     (
       text-label-text-color: var(--mat-sys-surface),
@@ -8,3 +17,4 @@ footer {
     )
   );
 }
+*/

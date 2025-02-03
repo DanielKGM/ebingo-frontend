@@ -1,4 +1,4 @@
-<div class="relative mb-{{ pb() }}">
+<div class="relative {{ hasBackButton() ? 'mb-' + pb() : 'pb-' + pb() }}">
   <h1 class="text-lg !text-center font-bold uppercase">
     {{ title() }}
   </h1>

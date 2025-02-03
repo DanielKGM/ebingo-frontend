@@ -1,5 +1,5 @@
 <span appTemplate>
-  <app-header [showSlogan]="false"> </app-header>
+  <app-header [showSlogan]="false" [showUserInfo]="true"> </app-header>
   <app-main [hasFooterContent]="true" [hasTitleContent]="true">
     <!-- TITULO -->
     <app-page-title
@@ -61,7 +61,7 @@
           </mat-form-field>
           <mat-slide-toggle> Preenchimento manual da cartela </mat-slide-toggle>
           <mat-icon
-            matTooltip="Marcando esta opção, um jogador deve estar presente na sala e marcar manualmente todos os números para vencer"
+            matTooltip="Ao escolher esta opção, os jogadores devem estar presentes na sala e marcarem manualmente suas cartelas"
             matTooltipPosition="below"
             >help</mat-icon
           >

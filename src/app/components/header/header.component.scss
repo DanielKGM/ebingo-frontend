@@ -1,3 +1,5 @@
+@use "@angular/material" as mat;
+
 .logo {
   width: fit-content;
   font-family: var(--logo-font);
@@ -23,4 +25,17 @@
     -5px -5px 10px 10px rgba(0, 0, 0, 0.3) inset,
     0 0 0 6px var(--bcolor, tomato) inset, 0 0 0 9px white inset,
     0 0 0 11px var(--bcolor, tomato) inset;
+}
+
+.ball:hover {
+  transform: translate(0, -10%);
+}
+
+header {
+  @include mat.button-overrides(
+    (
+      text-label-text-color: var(--mat-sys-surface),
+      text-state-layer-color: var(--mat-sys-surface),
+    )
+  );
 }

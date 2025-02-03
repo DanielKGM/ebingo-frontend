@@ -7,6 +7,9 @@
   <div
     class="flex items-center space-x-4 absolute right-0 top-0.5 -translate-y-0.5 h-full"
   >
+    @if (showUserInfo()) {
+    <app-user-info></app-user-info>
+    }
     <ng-content select="[right-content]"></ng-content>
   </div>
 

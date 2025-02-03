@@ -1,7 +1,7 @@
 <div appTemplate>
-  <app-header [showSlogan]="false">
-    <button mat-button left-content>
-      <mat-icon>live_help</mat-icon>Como jogar?
+  <app-header [showSlogan]="false" [showUserInfo]="true">
+    <button mat-button left-content (click)="openTutorial()">
+      <mat-icon>sticky_note_2</mat-icon>Como jogar Bingo?
     </button>
   </app-header>
   <app-main [hasTitleContent]="true" class="map">
@@ -35,7 +35,7 @@
             <mat-option value="1">Encerrados</mat-option>
             <mat-option value="2">Futuros</mat-option>
             <mat-option value="3">Participados</mat-option>
-            <mat-option value="4">Criados</mat-option>
+            <mat-option value="4">Autorais</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

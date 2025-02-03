@@ -68,13 +68,6 @@ body {
       ),
     )
   );
-
-  @include mat.button-overrides(
-    (
-      text-label-text-color: var(--mat-sys-surface),
-      text-state-layer-color: var(--mat-sys-surface),
-    )
-  );
 }
 
 [appTemplate] {
