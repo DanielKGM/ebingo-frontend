@@ -1,8 +1,10 @@
 <div appTemplate>
   <app-header [showSlogan]="false" [showUserInfo]="true">
-    <button mat-button left-content (click)="openTutorial()">
-      <mat-icon>sticky_note_2</mat-icon>Como jogar Bingo?
-    </button>
+    <a left-content (click)="openTutorial()" class="relative text-lg ml-8">
+      <mat-icon class="absolute -left-8 top-1/2 -translate-y-1/2"
+        >assignment</mat-icon
+      >Como jogar?
+    </a>
   </app-header>
   <app-main [hasTitleContent]="true" class="map">
     <!-- PESQUISA -->
@@ -41,7 +43,7 @@
       </div>
     </div>
     <!-- LISTAGEM -->
-    <p>Listagem</p>
+    <a class="text-white" routerLink="/jogos/teste">VISITAR UM JOGO DE TESTE</a>
   </app-main>
   <app-footer> </app-footer>
 </div>

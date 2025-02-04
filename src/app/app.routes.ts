@@ -42,4 +42,12 @@ export const routes: Routes = [
       );
     },
   },
+  {
+    path: 'jogos/:uuid',
+    loadComponent: () => {
+      return import('./pages/partida/partida.component').then(
+        (m) => m.PartidaComponent
+      );
+    },
+  },
 ];

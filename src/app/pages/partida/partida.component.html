@@ -1,0 +1,37 @@
+<div appTemplate>
+  <app-header [showSlogan]="false" [showUserInfo]="false">
+    <a routerLink="/jogos" class="relative text-lg ml-8" left-content>
+      <mat-icon class="absolute -left-8 top-1/2 -translate-y-1/2"
+        >arrow_back</mat-icon
+      >Sair da sala
+    </a>
+    <a class="relative text-lg" right-content (click)="openAudit()">
+      <mat-icon class="absolute -left-8 top-1/2 -translate-y-1/2"
+        >assignment</mat-icon
+      >Auditoria
+    </a>
+  </app-header>
+  <main class="dashboard">
+    <div class="card"></div>
+    <div class="gameinfo">
+      <app-custom-container
+        _title="PARTIDA"
+        titleAlign="end"
+      ></app-custom-container>
+    </div>
+    <div class="numbers">
+      <app-custom-container
+        _title="NÚMEROS SORTEADOS"
+        titleAlign="start"
+        [fill]="false"
+      >
+        1 2 3 4 5
+      </app-custom-container>
+    </div>
+    <div class="ranking">
+      <app-custom-container _title="RANKING" titleAlign="center"
+        >1 2 3 4 5</app-custom-container
+      >
+    </div>
+  </main>
+</div>

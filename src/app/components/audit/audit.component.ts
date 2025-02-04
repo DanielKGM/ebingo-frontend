@@ -5,7 +5,7 @@ import { DialogTemplateComponent } from '../dialog-template/dialog-template.comp
   selector: 'app-how-to-play',
   imports: [DialogTemplateComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './how-to-play.component.html',
-  styleUrl: './how-to-play.component.scss',
+  templateUrl: './audit.component.html',
+  styleUrl: './audit.component.scss',
 })
-export class HowToPlayComponent {}
+export class AuditComponent {}

@@ -1,0 +1,7 @@
+::-webkit-scrollbar-thumb {
+  background-color: var(--mat-sys-outline) !important;
+}
+
+[mat-card-content]:has(:nth-child(1):not(:first-child)) {
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2) !important;
+}

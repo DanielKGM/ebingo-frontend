@@ -1,0 +1,28 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 0.35fr 2fr;
+  gap: 1rem 1rem;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "ranking numbers numbers"
+    "ranking card gameinfo";
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  grid-area: card;
+}
+
+.gameinfo {
+  grid-area: gameinfo;
+}
+
+.numbers {
+  grid-area: numbers;
+}
+
+.ranking {
+  grid-area: ranking;
+}

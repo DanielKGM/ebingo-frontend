@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
   standalone: true,
   imports: [MatCardModule, NgClass],
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
   hasTitleContent = input(false);

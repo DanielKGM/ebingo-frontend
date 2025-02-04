@@ -29,20 +29,29 @@ body {
   height: 100%;
 }
 
-/* Estilo do scroll no mat card */
+a:hover {
+  text-decoration: underline;
+  filter: brightness(0.85);
+  cursor: pointer;
+}
+*,
+*::after,
+*::before {
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-app-region: no-drag;
+}
+
+/* Estilo do scroll */
 ::-webkit-scrollbar {
-  width: 8px;
-  background: transparent;
+  width: 15px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 2rem;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: var(--mat-sys-outline);
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: #aaaaaa;
 }
 
 body {
@@ -68,6 +77,13 @@ body {
       ),
     )
   );
+  @include mat.card-overrides(
+    (
+      outlined-outline-width: "2px",
+      outlined-container-elevation: "var(--mat-sys-level1)",
+      outlined-outline-color: "var(--mat-sys-outline-variant)",
+    )
+  );
 }
 
 [appTemplate] {
@@ -84,6 +100,5 @@ body {
 
 [appTemplate] > :nth-child(2) {
   flex-grow: 1;
-  overflow: auto;
   min-height: 0;
 }

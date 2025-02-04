@@ -6,6 +6,10 @@
   margin: 0 auto;
 }
 
+.logo > :nth-child(1) {
+  margin-left: 0;
+}
+
 .ball {
   margin-left: -10px;
   box-sizing: border-box;
@@ -32,6 +36,10 @@
 }
 
 header {
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+
   @include mat.button-overrides(
     (
       text-label-text-color: var(--mat-sys-surface),
