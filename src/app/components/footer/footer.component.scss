@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "../../scss/responsive.scss" as res;
 
 footer {
   @include mat.button-overrides(
@@ -7,4 +8,19 @@ footer {
       text-state-layer-color: var(--mat-sys-surface),
     )
   );
+}
+
+#info-minimized {
+  display: none;
+}
+
+@media (max-width: res.$w-tablet) {
+  #info,
+  #gitbtn {
+    display: none;
+  }
+
+  #info-minimized {
+    display: unset;
+  }
 }

@@ -1,10 +1,22 @@
 <footer class="flex justify-between items-center mx-4 text-white">
   <p class="text-2xl" style="font-family: var(--logo-font)">eBingo</p>
-  <div class="text-center text-sm">
+  <p
+    id="info"
+    class="text-center text-sm text-ellipsis text-nowrap overflow-hidden mx-6"
+  >
     Projeto criado para a disciplina Desenvolvimento de Sistemas Web/UFMA
-  </div>
+  </p>
 
-  <a href="https://github.com/DanielKGM" target="_blank">
-    <button mat-button><mat-icon svgIcon="github"></mat-icon> DanielKGM</button>
+  <a id="info-minimized" class="relative ml-8">
+    <mat-icon class="absolute -left-8 top-1/2 -translate-y-1/2">help</mat-icon
+    >Sobre este site
+  </a>
+
+  <a id="gitbtn" class="relative ml-8">
+    <mat-icon
+      svgIcon="github"
+      class="absolute -left-8 top-1/2 -translate-y-1/2"
+    ></mat-icon
+    >DanielKGM
   </a>
 </footer>

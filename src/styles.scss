@@ -1,4 +1,6 @@
 @use "@angular/material" as mat;
+@use "app/scss/responsive.scss" as res;
+
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
@@ -27,6 +29,7 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 a:hover {
@@ -65,8 +68,8 @@ body {
       rgba(var(--lt-or), 1) 60%,
       rgba(var(--or), 1) 100%
     );
-  overflow: hidden;
   margin: 0 auto;
+  padding: 2rem 0;
   background-repeat: no-repeat;
   background-blend-mode: soft-light;
   @include mat.theme(
@@ -93,7 +96,6 @@ body {
   align-items: stretch;
   height: 100%;
   width: 100%;
-  padding: 2rem 0;
   gap: 1rem;
   box-sizing: border-box;
 }
@@ -101,4 +103,18 @@ body {
 [appTemplate] > :nth-child(2) {
   flex-grow: 1;
   min-height: 0;
+}
+
+/*  RESPONSIVIDADE  */
+
+@media (max-width: res.$w-laptop) {
+  body {
+    width: 90%;
+  }
+}
+
+@media (max-width: res.$w-mobile) {
+  body {
+    padding: 0;
+  }
 }

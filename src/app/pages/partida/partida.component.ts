@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuditComponent } from '../../components/audit/audit.component';
 import { CustomContainerComponent } from '../../components/custom-container/custom-container.component';
+import { BingoCardComponent } from '../../components/bingo-card/bingo-card.component';
 
 @Component({
   selector: 'app-partida',
@@ -14,6 +15,7 @@ import { CustomContainerComponent } from '../../components/custom-container/cust
     RouterLink,
     MatDialogModule,
     CustomContainerComponent,
+    BingoCardComponent,
   ],
   templateUrl: './partida.component.html',
   styleUrl: './partida.component.scss',

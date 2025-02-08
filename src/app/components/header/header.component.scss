@@ -1,9 +1,12 @@
 @use "@angular/material" as mat;
+@use "../../scss/responsive.scss" as res;
 
 .logo {
   width: fit-content;
+  white-space: nowrap;
   font-family: var(--logo-font);
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .logo > :nth-child(1) {
@@ -14,10 +17,10 @@
   margin-left: -10px;
   box-sizing: border-box;
   background: white;
-  border: 2.5px solid black;
+  border: 3px solid black;
   color: black;
-  width: var(--bsize, tomato);
-  height: var(--bsize, tomato);
+  width: var(--bsize, 80px);
+  height: var(--bsize, 80px);
   font-size: var(--txtsize, 3rem);
   display: inline-flex;
   flex-direction: column;
@@ -27,7 +30,7 @@
   overflow: hidden;
   box-shadow: 5px 5px 10px 2px rgba(255, 255, 255, 0.3) inset,
     -5px -5px 10px 10px rgba(0, 0, 0, 0.3) inset,
-    0 0 0 6px var(--bcolor, tomato) inset, 0 0 0 9px white inset,
+    0 0 0 6px var(--bcolor, tomato) inset, 0 0 0 8px white inset,
     0 0 0 11px var(--bcolor, tomato) inset;
 }
 
@@ -46,4 +49,24 @@ header {
       text-state-layer-color: var(--mat-sys-surface),
     )
   );
+}
+
+@media (max-width: res.$w-mobile) {
+  .ball {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: res.$w-sm-mobile) {
+  header {
+    display: none;
+  }
+}
+
+@media (max-width: res.$w-tablet) {
+  .menu-actions {
+    display: none;
+  }
 }
