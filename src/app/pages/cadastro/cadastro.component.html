@@ -2,12 +2,9 @@
   <app-header [showSlogan]="true"> </app-header>
   <app-main [hasTwoContents]="true">
     <!-- Ilustração -->
-    <div right-content class="bg-gray-300 w-full h-full"></div>
+    <ng-container right-content></ng-container>
     <!-- Formulário -->
-    <div
-      left-content
-      class="flex flex-col h-full justify-between items-stretch px-16 py-8"
-    >
+    <ng-container left-content>
       <app-page-title
         [hasBackButton]="true"
         title="Junte-se a nós!"
@@ -46,7 +43,7 @@
           Finalizar Inscrição
         </button>
       </app-action-buttons>
-    </div>
+    </ng-container>
   </app-main>
   <app-footer> </app-footer>
 </div>

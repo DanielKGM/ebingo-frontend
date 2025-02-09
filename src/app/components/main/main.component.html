@@ -11,11 +11,11 @@
     >
       <ng-content select="[title-content]"></ng-content>
       @if(hasTwoContents()){
-      <div class="grid grid-cols-2 !h-full w-full">
-        <div class="h-full w-full">
+      <div class="grid-container">
+        <div class="grid-item px-16 py-8">
           <ng-content select="[left-content]"></ng-content>
         </div>
-        <div class="h-full w-full">
+        <div class="grid-item px-16 py-8">
           <ng-content select="[right-content]"></ng-content>
         </div>
       </div>

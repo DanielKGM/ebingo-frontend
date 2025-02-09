@@ -1,0 +1,7 @@
+@use "../../scss/responsive.scss" as res;
+
+@media (max-width: res.$w-mobile) {
+  .ttl {
+    align-self: center !important;
+  }
+}

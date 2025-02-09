@@ -1,10 +1,7 @@
 <div appTemplate>
   <app-header [showSlogan]="false" [showUserInfo]="true"> </app-header>
   <app-main [hasTwoContents]="true">
-    <div
-      left-content
-      class="flex flex-col h-full justify-between items-stretch px-16 py-8"
-    >
+    <ng-container left-content>
       <app-page-title
         title="Seu Perfil"
         [hasBackButton]="true"
@@ -31,9 +28,9 @@
           <mat-icon>person_off</mat-icon>Deletar Conta
         </button>
       </app-action-buttons>
-    </div>
+    </ng-container>
     <!-- Ilustração -->
-    <div right-content class="flex flex-col h-full justify-between px-16 py-8">
+    <ng-container right-content>
       <app-page-title
         pb="0"
         title="Seus Prêmios"
@@ -45,7 +42,7 @@
       <button mat-stroked-button button1 routerLink="/jogos">
         <mat-icon>list</mat-icon>Jogos Participados
       </button>
-    </div>
+    </ng-container>
   </app-main>
   <app-footer> </app-footer>
 </div>

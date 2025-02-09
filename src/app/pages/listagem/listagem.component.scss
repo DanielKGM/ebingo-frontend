@@ -1,8 +1,10 @@
 @use "@angular/material" as mat;
+@use "../../scss/responsive.scss" as res;
 
 mat-form-field {
   margin: 0;
   padding: 0;
+  width: 11rem;
 }
 
 .map {
@@ -16,4 +18,18 @@ mat-form-field {
       filled-container-height: 30px,
     )
   );
+}
+
+@media (max-width: res.$w-mobile) {
+  #filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #titulowrap {
+    order: -1;
+  }
+
+  mat-form-field {
+    width: unset;
+  }
 }

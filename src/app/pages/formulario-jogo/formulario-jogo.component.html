@@ -61,29 +61,14 @@
           </mat-form-field>
           <mat-slide-toggle> Preenchimento manual da cartela </mat-slide-toggle>
           <mat-icon
+            id="hint"
             matTooltip="Ao escolher esta opção, os jogadores devem estar presentes na sala e marcarem manualmente suas cartelas"
             matTooltipPosition="below"
             >help</mat-icon
           >
-        </p>
-      </fieldset>
-      <!-- Regras -->
-      <fieldset>
-        <legend>Apenas para ativar o overflow</legend>
-        <p>
-          <mat-form-field>
-            <mat-label>Tamanho da Cartela</mat-label>
-            <mat-select>
-              <mat-option value="10">10 números</mat-option>
-              <mat-option value="15">15 números</mat-option>
-              <mat-option value="24">24 números</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-slide-toggle> Preenchimento manual da cartela </mat-slide-toggle>
-          <mat-icon
-            matTooltip="Ao escolher esta opção, os jogadores devem estar presentes na sala e marcarem manualmente suas cartelas"
-            matTooltipPosition="below"
-            >help</mat-icon
+          <span id="hint-mobile" class="text-sm"
+            >Ao escolher esta opção, os jogadores devem estar presentes na sala
+            e marcarem manualmente suas cartelas</span
           >
         </p>
       </fieldset>

@@ -1,4 +1,5 @@
-$w-tablet: 769px;
-$w-laptop: 1025px;
-$w-mobile: 426px;
-$w-sm-mobile: 320px;
+$deviation: 100px;
+$w-tablet: 769px + $deviation;
+$w-laptop: 1025px + $deviation;
+$w-mobile: 426px + $deviation;
+$w-sm-mobile: 320px + $deviation;

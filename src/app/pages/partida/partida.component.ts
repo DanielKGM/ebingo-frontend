@@ -6,6 +6,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuditComponent } from '../../components/audit/audit.component';
 import { CustomContainerComponent } from '../../components/custom-container/custom-container.component';
 import { BingoCardComponent } from '../../components/bingo-card/bingo-card.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-partida',
@@ -16,6 +19,9 @@ import { BingoCardComponent } from '../../components/bingo-card/bingo-card.compo
     MatDialogModule,
     CustomContainerComponent,
     BingoCardComponent,
+    MatButtonModule,
+    MatButtonToggleModule,
+    NgClass,
   ],
   templateUrl: './partida.component.html',
   styleUrl: './partida.component.scss',
@@ -24,11 +30,11 @@ export class PartidaComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   partidaUuid = signal<string | null>(null);
   constructor(private readonly route: ActivatedRoute) {}
+  selectedTab = signal<string>('card');
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.partidaUuid.set(params.get('uuid'));
-      console.log(this.partidaUuid());
     });
   }
 
@@ -38,5 +44,10 @@ export class PartidaComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  setSelectedTab(tab: string) {
+    this.selectedTab.set(tab);
+    console.log(tab);
   }
 }

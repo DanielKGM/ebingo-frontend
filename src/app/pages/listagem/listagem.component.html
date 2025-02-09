@@ -9,7 +9,8 @@
   <app-main [hasTitleContent]="true" class="map">
     <!-- PESQUISA -->
     <div
-      class="flex flex-row justify-between items-center w-full pb-4"
+      class="flex flex-row justify-between items-center w-full pb-4 gap-3"
+      id="filter"
       title-content
     >
       <mat-form-field appearance="outline" subscriptSizing="dynamic">
@@ -17,30 +18,33 @@
         <input matInput />
         <mat-icon matPrefix>search</mat-icon>
       </mat-form-field>
-      <!-- TITULO -->
-      <app-page-title
-        pb="0"
-        [hasBackButton]="false"
-        title="Listagem de jogos"
-      ></app-page-title>
-      <div class="flex h-full flex-row items-center gap-4 flex-shrink-2">
+      <div id="titulowrap" class="flex flex-1 items-center">
+        <!-- TITULO -->
+        <app-page-title
+          class="flex-1"
+          id="pgtitulo"
+          pb="0"
+          [hasBackButton]="false"
+          title="Listagem de jogos"
+        ></app-page-title>
+
         <!-- NOVO JOGO -->
         <button mat-flat-button button2 routerLink="/jogos/novo">
           <mat-icon>add</mat-icon>
           Novo Jogo
         </button>
-        <!-- FILTRO -->
-        <mat-form-field appearance="outline" subscriptSizing="dynamic">
-          <mat-label>Filtrar Jogos</mat-label>
-          <mat-select>
-            <mat-option value="0">Não Iniciados</mat-option>
-            <mat-option value="1">Encerrados</mat-option>
-            <mat-option value="2">Futuros</mat-option>
-            <mat-option value="3">Participados</mat-option>
-            <mat-option value="4">Autorais</mat-option>
-          </mat-select>
-        </mat-form-field>
       </div>
+      <!-- FILTRO -->
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Filtrar Jogos</mat-label>
+        <mat-select>
+          <mat-option value="0">Não Iniciados</mat-option>
+          <mat-option value="1">Encerrados</mat-option>
+          <mat-option value="2">Futuros</mat-option>
+          <mat-option value="3">Participados</mat-option>
+          <mat-option value="4">Autorais</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <!-- LISTAGEM -->
     <a class="text-white" routerLink="/jogos/teste">VISITAR UM JOGO DE TESTE</a>

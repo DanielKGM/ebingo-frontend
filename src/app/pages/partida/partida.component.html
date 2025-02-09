@@ -12,28 +12,60 @@
     </a>
   </app-header>
   <main class="dashboard">
-    <div class="card">
-      <app-bingo-card></app-bingo-card>
+    <div class="mobile-menu relative">
+      <button mat-mini-fab routerLink="/jogos">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <mat-button-toggle-group (change)="setSelectedTab($event.value)">
+        <mat-button-toggle value="card" [checked]="true"
+          ><mat-icon>grid_3x3</mat-icon></mat-button-toggle
+        >
+        <mat-button-toggle value="ranking"
+          ><mat-icon>people_alt</mat-icon></mat-button-toggle
+        >
+        <mat-button-toggle value="gameinfo"
+          ><mat-icon>info_outline</mat-icon></mat-button-toggle
+        >
+      </mat-button-toggle-group>
+
+      <button mat-mini-fab (click)="openAudit()">
+        <mat-icon>assignment</mat-icon>
+      </button>
     </div>
-    <div class="gameinfo">
-      <app-custom-container
-        _title="PARTIDA"
-        titleAlign="end"
-      ></app-custom-container>
-    </div>
-    <div class="numbers">
-      <app-custom-container
-        _title="NÚMEROS SORTEADOS"
-        titleAlign="start"
-        [fill]="false"
-      >
-        1 2 3 4 5
-      </app-custom-container>
-    </div>
-    <div class="ranking">
-      <app-custom-container _title="RANKING" titleAlign="center"
-        >1 2 3 4 5</app-custom-container
-      >
-    </div>
+
+    <app-custom-container
+      _title="NÚMEROS SORTEADOS"
+      titleAlign="start"
+      class="numbers"
+    >
+      1 2 3 4 5
+    </app-custom-container>
+
+    <app-bingo-card
+      class="card"
+      [ngClass]="{
+        hidden: this.selectedTab() != 'card'
+      }"
+    ></app-bingo-card>
+
+    <app-custom-container
+      _title="PARTIDA"
+      titleAlign="end"
+      class="gameinfo"
+      [ngClass]="{
+        hidden: this.selectedTab() != 'gameinfo'
+      }"
+    ></app-custom-container>
+
+    <app-custom-container
+      _title="RANKING"
+      titleAlign="center"
+      class="ranking"
+      [ngClass]="{
+        hidden: this.selectedTab() != 'ranking'
+      }"
+      >1 2 3 4 5</app-custom-container
+    >
   </main>
 </div>

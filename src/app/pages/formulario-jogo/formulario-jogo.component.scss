@@ -1,9 +1,15 @@
+@use "../../scss/responsive.scss" as res;
+
 legend {
   font-size: 1rem /* 18px */;
   line-height: 1.5rem /* 28px */;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
+}
+
+#hint-mobile {
+  display: none;
 }
 
 fieldset p {
@@ -18,4 +24,16 @@ mat-form-field {
 
 legend mat-icon {
   margin-left: 1rem;
+}
+
+@media (max-width: res.$w-tablet) {
+  fieldset p {
+    flex-direction: column;
+  }
+  #hint {
+    display: none;
+  }
+  #hint-mobile {
+    display: unset;
+  }
 }

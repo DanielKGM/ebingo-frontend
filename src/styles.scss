@@ -82,7 +82,7 @@ body {
   );
   @include mat.card-overrides(
     (
-      outlined-outline-width: "2px",
+      outlined-outline-width: "0px",
       outlined-container-elevation: "var(--mat-sys-level1)",
       outlined-outline-color: "var(--mat-sys-outline-variant)",
     )
@@ -115,6 +115,7 @@ body {
 
 @media (max-width: res.$w-mobile) {
   body {
-    padding: 0;
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    width: 100%;
   }
 }
