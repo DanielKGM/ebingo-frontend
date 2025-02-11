@@ -16,7 +16,7 @@
   margin-left: -10px;
   box-sizing: border-box;
   background: white;
-  border: 3px solid black;
+  border: var(--bordersize, 3px) solid black;
   color: black;
   width: var(--bsize, 80px);
   height: var(--bsize, 80px);
@@ -38,27 +38,29 @@
 }
 
 header {
+  margin-bottom: 1rem;
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+}
 
-  @include mat.button-overrides(
-    (
-      text-label-text-color: var(--mat-sys-surface),
-      text-state-layer-color: var(--mat-sys-surface),
-    )
-  );
+#mobile-menu {
+  display: none;
 }
 
 @media (max-width: res.$w-mobile) {
   .logo,
-  #slogan {
-    display: none;
-  }
-}
-
-@media (max-width: res.$w-tablet) {
+  #slogan,
   .menu-actions {
     display: none;
+  }
+
+  #mobile-menu {
+    display: flex;
+  }
+
+  header {
+    margin-left: 0;
+    margin-right: 0;
   }
 }

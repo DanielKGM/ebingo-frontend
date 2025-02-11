@@ -57,21 +57,24 @@ a:hover {
   background-color: #aaaaaa;
 }
 
-body {
-  width: 70%;
-  font-family: var(--content-font);
+html {
   background: rgb(181, 86, 144);
-  background: url(https://assets.codepen.io/2945273/noisy-texture-100x100-o11-d15-c-ffffff-t1.png),
+  background: url("/textura.svg") no-repeat center center / cover,
     linear-gradient(
       165deg,
       rgba(var(--dk-rose), 1) 0%,
       rgba(var(--lt-or), 1) 60%,
       rgba(var(--or), 1) 100%
     );
+  background-blend-mode: color-burn;
+}
+
+body {
+  width: 70%;
+  font-family: var(--content-font);
+
   margin: 0 auto;
   padding: 2rem 0;
-  background-repeat: no-repeat;
-  background-blend-mode: soft-light;
   @include mat.theme(
     (
       color: mat.$violet-palette,
@@ -96,7 +99,6 @@ body {
   align-items: stretch;
   height: 100%;
   width: 100%;
-  gap: 1rem;
   box-sizing: border-box;
 }
 
@@ -115,7 +117,7 @@ body {
 
 @media (max-width: res.$w-mobile) {
   body {
-    padding: 0 0.5rem 0.5rem 0.5rem;
+    padding: 1rem;
     width: 100%;
   }
 }
