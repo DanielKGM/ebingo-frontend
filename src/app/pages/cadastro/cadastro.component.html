@@ -9,37 +9,41 @@
         [hasBackButton]="true"
         title="Junte-se a nós!"
       ></app-page-title>
-      <form>
+      <form
+        [formGroup]="cadastroForm"
+        (ngSubmit)="onSubmit()"
+        id="cadastroForm"
+      >
         <!-- APELIDO -->
-        <mat-form-field>
+        <mat-form-field class="hint">
           <mat-icon matPrefix>face</mat-icon>
           <mat-label>Apelido</mat-label>
-          <input matInput />
+          <input matInput formControlName="nickname" />
           <mat-hint>Como você gostaria de ser chamado(a)?</mat-hint>
         </mat-form-field>
         <!-- EMAIL -->
         <mat-form-field>
           <mat-icon matPrefix>alternate_email</mat-icon>
           <mat-label>Email</mat-label>
-          <input matInput />
+          <input matInput formControlName="email" />
         </mat-form-field>
         <!-- SENHA -->
         <mat-form-field>
           <mat-icon matPrefix>key</mat-icon>
           <mat-label>Senha</mat-label>
-          <input matInput type="password" />
+          <input matInput type="password" formControlName="password" />
         </mat-form-field>
         <!-- SENHA -->
         <mat-form-field>
           <mat-icon matPrefix>key</mat-icon>
           <mat-label>Confirmar Senha</mat-label>
-          <input matInput type="password" />
+          <input matInput type="password" formControlName="confirmPassword" />
         </mat-form-field>
       </form>
       <!-- Ações -->
       <app-action-buttons [showSeparator]="false">
         <!-- Primeiro botão -->
-        <button mat-stroked-button button1 routerLink="/jogos">
+        <button form="cadastroForm" mat-stroked-button button1 type="submit">
           Finalizar Inscrição
         </button>
       </app-action-buttons>

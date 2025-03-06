@@ -7,12 +7,8 @@
 @tailwind utilities;
 
 :root {
-  --dk-or: 213, 45, 0;
   --or: 239, 118, 39;
   --lt-or: 255, 154, 86;
-  --wh: 255, 255, 255;
-  --pink: 209, 98, 164;
-  --du-pink: 181, 86, 144;
   --dk-rose: 163, 2, 98;
   --content-font: Quicksand, sans-serif;
   --logo-font: Sour Gummy, sans-serif;
@@ -58,15 +54,11 @@ a:hover {
 }
 
 html {
-  background: rgb(181, 86, 144);
-  background: url("/textura.svg") no-repeat center center / cover,
-    linear-gradient(
-      165deg,
-      rgba(var(--dk-rose), 1) 0%,
-      rgba(var(--lt-or), 1) 60%,
-      rgba(var(--or), 1) 100%
-    );
-  background-blend-mode: color-burn;
+  background: linear-gradient(
+    rgba(var(--dk-rose), 1) 0%,
+    rgba(var(--lt-or), 1) 80%,
+    rgba(var(--or), 1) 100%
+  );
 }
 
 body {
@@ -88,6 +80,13 @@ body {
       outlined-outline-width: "0px",
       outlined-container-elevation: "var(--mat-sys-level1)",
       outlined-outline-color: "var(--mat-sys-outline-variant)",
+    )
+  );
+
+  @include mat.snack-bar-overrides(
+    (
+      container-color: var("--snackcolor"),
+      supporting-text-color: white,
     )
   );
 }
