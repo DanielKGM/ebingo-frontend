@@ -58,8 +58,6 @@ export class CadastroComponent {
   }
 
   onSubmit(): void {
-    console.log('submit');
-
     if (this.cadastroForm.invalid) {
       this.showFormErrors();
       return;
