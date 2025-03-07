@@ -1,30 +1,38 @@
 <div appTemplate>
-  <app-header [showSlogan]="false" [showUserInfo]="true"> </app-header>
+  <app-header [showSlogan]="false" [showUserInfo]="false"> </app-header>
   <app-main [hasTwoContents]="true">
     <ng-container left-content>
       <app-page-title
         title="Seu Perfil"
         [hasBackButton]="true"
       ></app-page-title>
-      <form>
+      <form [formGroup]="perfilForm" id="perfilForm">
         <!-- APELIDO -->
         <mat-form-field>
           <mat-icon matPrefix>face</mat-icon>
           <mat-label>Apelido</mat-label>
-          <input matInput value="Fulano da Silva" />
+          <input matInput [value]="user?.nickname" formControlName="nickname" />
         </mat-form-field>
         <!-- EMAIL -->
         <mat-form-field>
           <mat-icon matPrefix>alternate_email</mat-icon>
           <mat-label>Email</mat-label>
-          <input matInput value="fulano@gmail.com" disabled />
+          <input matInput [value]="user?.email" disabled />
         </mat-form-field>
       </form>
       <!-- Ações -->
       <app-action-buttons [showSeparator]="false">
         <!-- Primeiro botão -->
-        <button mat-flat-button button1>Salvar</button>
-        <button mat-flat-button button2 routerLink="/">
+        <button
+          type="submit"
+          form="perfilForm"
+          mat-flat-button
+          button1
+          (click)="updateNickname()"
+        >
+          Salvar
+        </button>
+        <button mat-flat-button button2 (click)="deleteUser()">
           <mat-icon>person_off</mat-icon>Deletar Conta
         </button>
       </app-action-buttons>

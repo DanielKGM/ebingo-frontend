@@ -27,7 +27,15 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'jogos/novo',
+    path: 'jogos/form',
+    loadComponent: () => {
+      return import('./pages/formulario-jogo/formulario-jogo.component').then(
+        (m) => m.FormularioJogoComponent
+      );
+    },
+  },
+  {
+    path: 'jogos/form/:gameId',
     loadComponent: () => {
       return import('./pages/formulario-jogo/formulario-jogo.component').then(
         (m) => m.FormularioJogoComponent

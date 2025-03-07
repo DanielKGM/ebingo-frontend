@@ -1,4 +1,4 @@
-<header class="relative text-white mx-4 text-center">
+<header class="relative text-white mx-4">
   <div
     class="flex items-center space-x-4 absolute left-0 top-0.5 -translate-y-0.5 h-full menu-actions"
   >
@@ -13,10 +13,30 @@
     <ng-content select="[right-content]"></ng-content>
   </div>
 
+  <div id="mobile-menu" class="flex items-center gap-3">
+    @if (showUserInfo()) {
+    <button mat-mini-fab [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/perfil">
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Deslogar</span>
+      </button>
+    </mat-menu>
+    }
+    <ng-content select="[mobile-buttons]"></ng-content>
+  </div>
+
   <h1
     class="logo mb-1.5"
     [style.--bsize]="ballSize()"
     [style.--txtsize]="textSize()"
+    [style.--bordersize]="borderSize()"
   >
     <span class="ball">e</span>
     <span class="ball" [style.--bcolor]="'purple'">B</span>
@@ -26,6 +46,8 @@
     <span class="ball" [style.--bcolor]="'blue'">O</span>
   </h1>
   @if (showSlogan()) {
-  <span class="text-lg font-bold" id="slogan">PARTIDAS DE BINGO ONLINE</span>
+  <span class="text-lg font-bold block text-center" id="slogan"
+    >PARTIDAS DE BINGO ONLINE</span
+  >
   }
 </header>

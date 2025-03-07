@@ -2,6 +2,7 @@
 @use "../../scss/responsive.scss" as res;
 
 footer {
+  margin-top: 1rem;
   @include mat.button-overrides(
     (
       text-label-text-color: var(--mat-sys-surface),
@@ -10,17 +11,8 @@ footer {
   );
 }
 
-#info-minimized {
-  display: none;
-}
-
-@media (max-width: res.$w-tablet) {
-  #info,
-  #gitbtn {
+@media (max-width: res.$w-mobile) {
+  footer {
     display: none;
-  }
-
-  #info-minimized {
-    display: unset;
   }
 }

@@ -46,3 +46,7 @@
     padding: 1rem;
   }
 }
+
+[mat-card-content] {
+  background-color: none !important;
+}

@@ -8,10 +8,13 @@ $orange-dark: #f2ae00;
   padding: 10px;
   display: grid;
   grid-gap: 3px;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(1fr, 1fr);
   grid-template-columns: repeat(5, 1fr);
+  box-shadow: var(--mat-sys-level1);
 
   &__item {
+    padding-top: 10px;
+    padding-bottom: 10px;
     background: $yellow-light;
     display: flex;
     align-items: center;
@@ -20,15 +23,14 @@ $orange-dark: #f2ae00;
     cursor: pointer;
     user-select: none;
     font-size: 2rem;
-
     &.active {
       &:after {
         content: "";
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 80%;
-        height: 80%;
+        width: 100%;
+        height: 100%;
         background-color: $orange;
         mask-image: url("/check-mark.svg");
         -webkit-mask-image: url("/checkmark.svg");
@@ -39,8 +41,7 @@ $orange-dark: #f2ae00;
         mask-position: center;
         -webkit-mask-position: center;
         transform: translate(-50%, -50%);
-        opacity: 0.6;
-        pointer-events: none;
+        opacity: 0.8;
       }
     }
   }

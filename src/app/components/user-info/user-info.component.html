@@ -1,6 +1,6 @@
 <div class="user-info flex flex-col items-end">
-  <a routerLink="/perfil" class="text-lg"> Fulano da Silva </a>
-  <a routerLink="/" class="relative">
+  <a routerLink="/perfil" class="text-lg">{{ user?.nickname }}</a>
+  <a (click)="logout()" class="relative">
     <mat-icon class="absolute -left-8">logout</mat-icon>deslogar
   </a>
 </div>
