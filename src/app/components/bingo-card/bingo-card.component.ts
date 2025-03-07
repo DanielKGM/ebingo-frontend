@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-bingo-card',
@@ -7,14 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './bingo-card.component.scss',
 })
 export class BingoCardComponent {
-  bingoItems: number[] = Array.from({ length: 25 }, (_, i) => i);
-  activeItems: boolean[] = new Array(25).fill(false);
+  @Input() bingoItems: number[] = [];
+  @Input() markedNumbers: number[] = [];
+  @Output() markNumber = new EventEmitter<number>();
 
-  toggleItem(index: number): void {
-    this.activeItems[index] = !this.activeItems[index];
+  isMarked(num: number): boolean {
+    return this.markedNumbers.includes(num);
   }
 
-  clearSelection(): void {
-    this.activeItems.fill(false);
+  toggleItem(num: number): void {
+    if (!this.isMarked(num)) {
+      this.markNumber.emit(num);
+    }
   }
 }

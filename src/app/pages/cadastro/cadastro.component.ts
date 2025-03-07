@@ -102,20 +102,20 @@ export class CadastroComponent {
   }
 
   private createUser(userDTO: any): void {
-    this.authService.register(userDTO).subscribe(
-      (response) => {
+    this.authService.register(userDTO).subscribe({
+      next: (response) => {
         this.snackbarService.showMessage(
           'Cadastro realizado com sucesso!',
           'good'
         );
         this.router.navigate(['/jogos']);
       },
-      (error) => {
+      error: (error) => {
         this.snackbarService.showMessage(
           'Erro ao criar o usuário. Tente novamente.',
           'bad'
         );
-      }
-    );
+      },
+    });
   }
 }

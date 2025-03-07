@@ -4,22 +4,27 @@
     <!-- TITULO -->
     <app-page-title
       [hasBackButton]="false"
-      title="Configurar Novo Jogo"
+      title="{{ isEditing ? 'Editar Jogo' : 'Configurar Novo Jogo' }}"
       title-content
       class="w-full"
     ></app-page-title>
     <!-- Dados -->
-    <form>
+    <form [formGroup]="gameForm" (ngSubmit)="submitForm()" id="gameForm">
       <fieldset>
         <legend>1. Informações da Partida</legend>
         <p>
           <mat-form-field style="flex-grow: 3">
             <mat-label>Nome da Sala</mat-label>
-            <input matInput />
+            <input matInput formControlName="roomName" required />
           </mat-form-field>
           <mat-form-field>
             <mat-label>Data de Início</mat-label>
-            <input matInput [matDatepicker]="datepicker" />
+            <input
+              matInput
+              [matDatepicker]="datepicker"
+              formControlName="startTime"
+              required
+            />
             <mat-datepicker #datepicker></mat-datepicker>
             <mat-datepicker-toggle
               [for]="datepicker"
@@ -28,7 +33,13 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Horário de Início</mat-label>
-            <input matInput [matTimepicker]="customPicker" />
+            <input
+              matInput
+              [matTimepicker]="customPicker"
+              formControlName="startTime"
+              required
+              [matTimepicker]="customPicker"
+            />
             <mat-timepicker-toggle
               matIconSuffix
               [for]="customPicker"
@@ -42,7 +53,7 @@
         <p>
           <mat-form-field>
             <mat-label>Descrição</mat-label>
-            <input matInput />
+            <input matInput formControlName="prize" />
             <mat-icon matSuffix>emoji_events</mat-icon>
           </mat-form-field>
         </p>
@@ -53,13 +64,15 @@
         <p>
           <mat-form-field>
             <mat-label>Tamanho da Cartela</mat-label>
-            <mat-select>
+            <mat-select formControlName="cardSize" required>
               <mat-option value="10">10 números</mat-option>
               <mat-option value="15">15 números</mat-option>
-              <mat-option value="24">24 números</mat-option>
+              <mat-option value="25">25 números</mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-slide-toggle> Preenchimento manual da cartela </mat-slide-toggle>
+          <mat-slide-toggle formControlName="manualFill">
+            Preenchimento manual da cartela
+          </mat-slide-toggle>
           <mat-icon
             id="hint"
             matTooltip="Ao escolher esta opção, os jogadores devem estar presentes na sala e marcarem manualmente suas cartelas"
@@ -76,12 +89,18 @@
     <!-- Ações -->
     <app-action-buttons [showSeparator]="false" footer-content>
       <!-- Primeiro botão -->
-      <button mat-flat-button button1 routerLink="/jogos/uuidteste">
-        <mat-icon>play_arrow</mat-icon>
-        Iniciar
+      <button
+        mat-flat-button
+        button1
+        type="submit"
+        [disabled]="gameForm.invalid"
+        form="gameForm"
+      >
+        <mat-icon>save</mat-icon>
+        {{ isEditing ? "Salvar Alterações" : "Criar Jogo" }}
       </button>
       <!-- Segundo botão -->
-      <button mat-flat-button button2 routerLink="/jogos">
+      <button mat-flat-button button2 (click)="goBack()">
         <mat-icon>close</mat-icon>
         Descartar
       </button>

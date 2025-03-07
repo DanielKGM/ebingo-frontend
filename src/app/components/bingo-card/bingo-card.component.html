@@ -1,9 +1,9 @@
-<div class="bingo-card w-full h-full rounded-xl">
+<div class="bingo-card w-full rounded-xl">
   @for (item of bingoItems; track $index; let i = $index) {
   <div
     class="bingo-card__item"
-    [class.active]="activeItems[i]"
-    (click)="toggleItem(i)"
+    [class.active]="isMarked(item)"
+    (click)="toggleItem(item)"
   >
     {{ item }}
   </div>

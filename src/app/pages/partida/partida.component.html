@@ -39,7 +39,22 @@
       titleAlign="start"
       class="numbers"
     >
-      1 2 3 4 5
+      <div class="numbers-container">
+        <div class="draw-button" (click)="drawNewNumber()">
+          <span>+</span>
+        </div>
+
+        <div class="numbers-list">
+          @for (number of drawnNumbers; track $index) {
+          <div
+            class="number-circle"
+            [ngClass]="{ recent: $index === drawnNumbers.length - 1 }"
+          >
+            {{ number }}
+          </div>
+          }
+        </div>
+      </div>
     </app-custom-container>
 
     <app-bingo-card
@@ -47,16 +62,66 @@
       [ngClass]="{
         hidden: this.selectedTab() != 'card'
       }"
+      [bingoItems]="card?.numbers ?? []"
+      [markedNumbers]="card?.markedNumbers ?? []"
+      (markNumber)="markNumber($event)"
     ></app-bingo-card>
 
     <app-custom-container
       _title="PARTIDA"
       titleAlign="end"
       class="gameinfo"
-      [ngClass]="{
-        hidden: this.selectedTab() != 'gameinfo'
-      }"
-    ></app-custom-container>
+      [ngClass]="{ hidden: this.selectedTab() != 'gameinfo' }"
+    >
+      <!-- Container das informações do jogo -->
+      <div class="game-details">
+        <p>
+          <span class="text-sm text-gray-500 block">Sala</span>
+          <strong class="text-base font-semibold block">{{
+            game?.roomName
+          }}</strong>
+        </p>
+        <p>
+          <span class="text-sm text-gray-500 block mt-2">Início</span>
+          <strong class="text-base font-semibold block">{{
+            game?.startTime
+          }}</strong>
+        </p>
+        <p>
+          <span class="text-sm text-gray-500 block mt-2">Prêmio</span>
+          <strong class="text-base font-semibold block">{{
+            game?.prize ?? "Não definido"
+          }}</strong>
+        </p>
+      </div>
+
+      <!-- Container dos botões de ação -->
+      <div class="game-actions">
+        @if (!card && game?.status === 'NAO_INICIADO') {
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="joinGame()"
+          class="action-button"
+        >
+          Jogar!
+        </button>
+        } @else {
+        <button mat-flat-button color="primary" disabled class="action-button">
+          Clamar Prêmio
+        </button>
+        } @if (game?.status === 'NAO_INICIADO') {
+        <button
+          mat-fab
+          color="accent"
+          class="fab-button"
+          [routerLink]="'/jogos/form/' + gameId"
+        >
+          <mat-icon>settings</mat-icon>
+        </button>
+        }
+      </div>
+    </app-custom-container>
 
     <app-custom-container
       _title="RANKING"
@@ -65,7 +130,18 @@
       [ngClass]="{
         hidden: this.selectedTab() != 'ranking'
       }"
-      >1 2 3 4 5</app-custom-container
     >
+      <div class="flex flex-col space-y-2">
+        @for (player of game?.players ?? []; track $index) { @if ($index !== 0)
+        {
+        <hr class="border-t-2 border-gray-300 my-4" />
+        }
+        <div class="flex items-center gap-2 w-full">
+          <mat-icon class="text-blue-500 mr-2">person</mat-icon>
+          <span class="font-bold">{{ player.nickname }}</span>
+        </div>
+        }
+      </div>
+    </app-custom-container>
   </main>
 </div>
