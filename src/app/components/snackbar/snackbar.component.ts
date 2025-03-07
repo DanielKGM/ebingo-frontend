@@ -14,12 +14,12 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SnackbarComponent {
   snackBarRef = inject(MatSnackBarRef);
-  icon = signal('lightbulb'); // icone info padrão
+  icon = signal('warning'); // icone info padrão
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {
     if (data?.type === 'good') {
-      this.icon.set('check');
+      this.icon.set('sentiment_very_satisfied');
     } else if (data?.type === 'bad') {
-      this.icon.set('close');
+      this.icon.set('sentiment_very_dissatisfied');
     }
   }
 }

@@ -53,8 +53,8 @@
 .numbers {
   grid-area: numbers;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
   gap: 10px;
   position: relative;
   white-space: nowrap;
@@ -64,6 +64,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 100%;
 }
 
 .draw-button {

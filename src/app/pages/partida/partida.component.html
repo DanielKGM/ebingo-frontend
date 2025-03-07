@@ -40,7 +40,11 @@
       class="numbers"
     >
       <div class="numbers-container">
-        <div class="draw-button" (click)="drawNewNumber()">
+        <div
+          class="draw-button"
+          (click)="drawNewNumber()"
+          (keyup)="drawNewNumber()"
+        >
           <span>+</span>
         </div>
 
@@ -78,26 +82,26 @@
         <p>
           <span class="text-sm text-gray-500 block">Sala</span>
           <strong class="text-base font-semibold block">{{
-            game?.roomName
+            game.roomName
           }}</strong>
         </p>
         <p>
           <span class="text-sm text-gray-500 block mt-2">Início</span>
           <strong class="text-base font-semibold block">{{
-            game?.startTime
+            game.startTime
           }}</strong>
         </p>
         <p>
           <span class="text-sm text-gray-500 block mt-2">Prêmio</span>
           <strong class="text-base font-semibold block">{{
-            game?.prize ?? "Não definido"
+            game.prize ?? "Não definido"
           }}</strong>
         </p>
       </div>
 
       <!-- Container dos botões de ação -->
       <div class="game-actions">
-        @if (!card && game?.status === 'NAO_INICIADO') {
+        @if (!card && game.status === 'NAO_INICIADO') {
         <button
           mat-flat-button
           color="primary"
@@ -110,7 +114,7 @@
         <button mat-flat-button color="primary" disabled class="action-button">
           Clamar Prêmio
         </button>
-        } @if (game?.status === 'NAO_INICIADO') {
+        } @if (game.status === 'NAO_INICIADO') {
         <button
           mat-fab
           color="accent"
@@ -132,8 +136,7 @@
       }"
     >
       <div class="flex flex-col space-y-2">
-        @for (player of game?.players ?? []; track $index) { @if ($index !== 0)
-        {
+        @for (player of game.players ?? []; track $index) { @if ($index !== 0) {
         <hr class="border-t-2 border-gray-300 my-4" />
         }
         <div class="flex items-center gap-2 w-full">

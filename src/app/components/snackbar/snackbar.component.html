@@ -1,4 +1,7 @@
 <span class="snackbar-content">
-  <mat-icon>{{ icon() }}</mat-icon>
+  <mat-icon
+    [class]="icon() == 'sentiment_very_satisfied' ? 'animate-bounce' : ''"
+    >{{ icon() }}</mat-icon
+  >
   <span>{{ data.message }}</span>
 </span>

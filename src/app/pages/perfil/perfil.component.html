@@ -32,12 +32,17 @@
         >
           Salvar
         </button>
-        <button mat-flat-button button2 (click)="deleteUser()">
+        <button
+          class="btn-danger"
+          mat-flat-button
+          button2
+          (click)="deleteUser()"
+        >
           <mat-icon>person_off</mat-icon>Deletar Conta
         </button>
       </app-action-buttons>
     </ng-container>
-    <!-- Ilustração -->
+    <!-- Premios -->
     <ng-container right-content>
       <app-page-title
         pb="0"
@@ -47,8 +52,8 @@
       <mat-card class="!bg-gray-300 h-1/2">
         <mat-card-content></mat-card-content>
       </mat-card>
-      <button mat-stroked-button button1 routerLink="/jogos">
-        <mat-icon>list</mat-icon>Jogos Participados
+      <button mat-stroked-button class="w-fit mx-auto" routerLink="/jogos">
+        <mat-icon>menu</mat-icon>Jogos Participados
       </button>
     </ng-container>
   </app-main>

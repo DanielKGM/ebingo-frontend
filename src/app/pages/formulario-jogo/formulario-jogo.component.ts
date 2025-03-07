@@ -18,15 +18,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTimepickerModule } from '@angular/material/timepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ActionButtonsComponent } from '../../components/action-buttons/action-buttons.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { PageTitleComponent } from '../../components/page-title/page-title.component';
 import { GameDto } from '../../dto/game.dto';
+import { SnackbarService } from '../../services/snackbar.service';
 import { MainComponent } from './../../components/main/main.component';
 import { GameService } from './../../services/game.service';
-import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-formulario-jogo',
@@ -41,7 +41,6 @@ import { SnackbarService } from '../../services/snackbar.service';
     MatButtonModule,
     ActionButtonsComponent,
     MatSelectModule,
-    RouterLink,
     MatDatepickerModule,
     MatCardModule,
     MatTimepickerModule,
@@ -91,7 +90,6 @@ export class FormularioJogoComponent implements OnInit {
 
   dateFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
-
     return day !== 0 && day !== 6;
   };
 
@@ -146,6 +144,7 @@ export class FormularioJogoComponent implements OnInit {
             'Jogo atualizado com sucesso!',
             'good'
           );
+          this.goBack();
         },
         error: () => {
           this.snackbarService.showMessage('Erro ao atualizar jogo!', 'bad');
@@ -156,7 +155,7 @@ export class FormularioJogoComponent implements OnInit {
       this.gameService.createGame(gameData).subscribe({
         next: (newGame) => {
           this.snackbarService.showMessage('Jogo criado com sucesso!', 'good');
-          this.router.navigate(['/jogos']);
+          this.router.navigate(['/jogos/' + newGame.id]);
         },
         error: () => {
           this.snackbarService.showMessage('Erro ao criar jogo!', 'bad');

@@ -14,14 +14,6 @@
   --logo-font: Sour Gummy, sans-serif;
 }
 
-.mdc-notched-outline__notch {
-  border-style: none;
-}
-
-.mat-mdc-icon-button {
-  line-height: normal;
-}
-
 html,
 body {
   height: 100%;
@@ -61,6 +53,8 @@ html {
   );
 }
 
+/* Corpo e estilos globais Material */
+
 body {
   width: 70%;
   font-family: var(--content-font);
@@ -85,8 +79,14 @@ body {
 
   @include mat.snack-bar-overrides(
     (
-      container-color: var("--snackcolor"),
-      supporting-text-color: white,
+      container-color: var(--sbColor),
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      outlined-outline-color: "var(--mat-sys-primary)",
+      outlined-outline-width: "2px",
     )
   );
 }
@@ -104,6 +104,32 @@ body {
 [appTemplate] > :nth-child(2) {
   flex-grow: 1;
   min-height: 0;
+}
+
+/* BOTÕES E CAMPOS */
+
+.btn-success {
+  @include mat.button-overrides(
+    (
+      filled-container-color: #388e3c,
+    )
+  );
+}
+
+.btn-danger {
+  @include mat.button-overrides(
+    (
+      filled-container-color: #d32f2f,
+    )
+  );
+}
+
+.mdc-notched-outline__notch {
+  border-style: none;
+}
+
+.mat-mdc-icon-button {
+  line-height: normal;
 }
 
 /*  RESPONSIVIDADE  */

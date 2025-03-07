@@ -34,17 +34,28 @@ export class PartidaComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   selectedTab = signal<string>('card');
   userId!: string;
-  game!: GameDto;
+  game: GameDto = {
+    id: '',
+    roomName: '',
+    startTime: '',
+    prize: '',
+    status: 'NAO_INICIADO',
+    players: [],
+    drawnNumbers: [],
+  };
   gameId!: string;
   card!: CardDto | null;
   drawnNumbers: number[] = [];
+  markAudio: HTMLAudioElement = new Audio('pentip.mp3');
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly gameService: GameService,
     private readonly snackbarService: SnackbarService,
     private readonly router: Router
-  ) {}
+  ) {
+    this.markAudio.load();
+  }
 
   ngOnInit(): void {
     this.gameId = this.route.snapshot.paramMap.get('uuid')!;
@@ -63,10 +74,14 @@ export class PartidaComponent implements OnInit {
         }
       },
       error: () => {
-        this.snackbarService.showMessage('Erro ao carregar jogo!', 'bad');
-        this.router.navigate(['/jogos']);
+        this.redirecionarErro();
       },
     });
+  }
+
+  redirecionarErro() {
+    this.snackbarService.showMessage('Erro ao carregar jogo!', 'bad');
+    this.router.navigate(['/jogos']);
   }
 
   loadCard(): void {
@@ -103,12 +118,14 @@ export class PartidaComponent implements OnInit {
 
     this.gameService.markNumber(this.gameId, this.userId, number).subscribe({
       next: (updatedMarkedNumbers) => {
-        this.card!.markedNumbers = updatedMarkedNumbers;
+        if (this.card) {
+          this.card.markedNumbers = updatedMarkedNumbers;
+          this.markAudio.play();
+        }
       },
       error: (error) => {
         this.snackbarService.showMessage(
-          error?.error?.message || 'Erro desconhecido',
-          'bad'
+          error?.error?.message || 'Erro desconhecido'
         );
       },
     });
@@ -127,11 +144,7 @@ export class PartidaComponent implements OnInit {
   }
 
   openAudit() {
-    const dialogRef = this.dialog.open(AuditComponent);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      //
-    });
+    this.dialog.open(AuditComponent);
   }
 
   setSelectedTab(tab: string) {
