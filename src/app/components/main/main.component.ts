@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  hasTitleContent = input(false);
   hasTwoContents = input(false);
   hasFooterContent = input(false);
+  glass = input(true);
 }

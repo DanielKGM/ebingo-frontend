@@ -1,36 +1,24 @@
-<main class="h-full w-full">
-  <mat-card
-    appearance="outlined"
-    class="overflow-hidden h-full"
-    [ngClass]="{ 'px-4 py-8': !hasTwoContents() }"
+<main
+  class="h-full w-full overflow-hidden flex-grow flex flex-col rounded-xl gap-4"
+  [ngClass]="{ 'px-4 py-8': !hasTwoContents(), glass: glass() }"
+>
+  <ng-content select="[title-content]"></ng-content>
+  @if(hasTwoContents()){
+  <div class="grid-container overflow-y-auto">
+    <div class="grid-item py-8 pl-8 pr-4">
+      <ng-content select="[left-content]"></ng-content>
+    </div>
+    <div class="grid-item py-8 pr-8 pl-4">
+      <ng-content select="[right-content]"></ng-content>
+    </div>
+  </div>
+  } @else {
+  <div
+    class="overflow-auto !p-4 rounded-xl bg-[var(--mat-sys-surface)] flex-grow content"
   >
-    @if (hasTwoContents() || hasTitleContent()) {
-    <mat-card-header
-      class="!p-0"
-      [ngClass]="{ 'h-full overflow-auto': hasTwoContents() }"
-    >
-      <ng-content select="[title-content]"></ng-content>
-      @if(hasTwoContents()){
-      <div class="grid-container">
-        <div class="grid-item px-16 py-8">
-          <ng-content select="[left-content]"></ng-content>
-        </div>
-        <div class="grid-item px-16 py-8">
-          <ng-content select="[right-content]"></ng-content>
-        </div>
-      </div>
-      }
-    </mat-card-header>
-    } @if (!hasTwoContents()) {
-    <mat-card-content
-      class="overflow-auto !p-4 rounded-xl bg-gray-400 h-full !border-2 !border-[var(--mat-sys-outline)]"
-    >
-      <ng-content></ng-content>
-    </mat-card-content>
-    } @if(hasFooterContent()){
-    <mat-card-footer class="text-center pt-4">
-      <ng-content select="[footer-content]"></ng-content>
-    </mat-card-footer>
-    }
-  </mat-card>
+    <ng-content></ng-content>
+  </div>
+  } @if(hasFooterContent()){
+  <ng-content select="[footer-content]"></ng-content>
+  }
 </main>

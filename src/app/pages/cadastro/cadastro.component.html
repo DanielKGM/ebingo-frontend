@@ -10,25 +10,26 @@
         title="Junte-se a nós!"
       ></app-page-title>
       <form
+        class="pt-4"
         [formGroup]="cadastroForm"
         (ngSubmit)="onSubmit()"
         id="cadastroForm"
       >
         <!-- APELIDO -->
-        <mat-form-field class="hint">
+        <mat-form-field class="hint" appearance="outline">
           <mat-icon matPrefix>face</mat-icon>
           <mat-label>Apelido</mat-label>
           <input matInput formControlName="nickname" />
           <mat-hint>Como você gostaria de ser chamado(a)?</mat-hint>
         </mat-form-field>
         <!-- EMAIL -->
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-icon matPrefix>alternate_email</mat-icon>
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" />
         </mat-form-field>
         <!-- SENHA -->
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-icon matPrefix>key</mat-icon>
           <mat-label>Senha</mat-label>
           <input
@@ -39,7 +40,7 @@
           />
         </mat-form-field>
         <!-- SENHA -->
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-icon matPrefix>key</mat-icon>
           <mat-label>Confirmar Senha</mat-label>
           <input

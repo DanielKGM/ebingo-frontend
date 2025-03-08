@@ -13,7 +13,6 @@ export class PageTitleComponent {
   constructor(private readonly location: Location) {}
   title = input.required<string>();
   hasBackButton = input.required<boolean>();
-  pb = input('4');
 
   goBack(): void {
     this.location.back();

@@ -1,6 +1,6 @@
 <span appTemplate>
   <app-header [showSlogan]="false" [showUserInfo]="true"> </app-header>
-  <app-main [hasFooterContent]="true" [hasTitleContent]="true">
+  <app-main [hasFooterContent]="true">
     <!-- TITULO -->
     <app-page-title
       [hasBackButton]="false"
@@ -100,7 +100,7 @@
         {{ isEditing ? "Salvar Alterações" : "Criar Jogo" }}
       </button>
       <!-- Segundo botão -->
-      <button mat-flat-button button2 (click)="goBack()">
+      <button mat-flat-button button2 class="btn-danger" (click)="goBack()">
         <mat-icon>close</mat-icon>
         Descartar
       </button>

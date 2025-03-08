@@ -102,6 +102,10 @@
       <!-- Container dos botões de ação -->
       <div class="game-actions">
         @if (!card && game.status === 'NAO_INICIADO') {
+        <button mat-flat-button color="primary" disabled class="action-button">
+          Clamar Prêmio
+        </button>
+        } @else {
         <button
           mat-flat-button
           color="primary"
@@ -109,10 +113,6 @@
           class="action-button"
         >
           Jogar!
-        </button>
-        } @else {
-        <button mat-flat-button color="primary" disabled class="action-button">
-          Clamar Prêmio
         </button>
         } @if (game.status === 'NAO_INICIADO') {
         <button

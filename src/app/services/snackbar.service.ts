@@ -13,11 +13,13 @@ export class SnackbarService {
   showMessage(
     message: string,
     type: TipoMensagem = 'default',
-    action: string = 'OK',
     duration: number = 3000
   ): void {
     this.setSnackbarColor(type);
-    new Audio(`${type}.mp3`).play().then(() =>
+    let audio = new Audio(type + '.mp3');
+    audio.load();
+    audio.currentTime = 0;
+    audio.play().then(() =>
       this.snackBar.openFromComponent(SnackbarComponent, {
         data: { message, type },
         duration,

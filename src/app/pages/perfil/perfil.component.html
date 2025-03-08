@@ -8,13 +8,13 @@
       ></app-page-title>
       <form [formGroup]="perfilForm" id="perfilForm">
         <!-- APELIDO -->
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-icon matPrefix>face</mat-icon>
           <mat-label>Apelido</mat-label>
           <input matInput [value]="user?.nickname" formControlName="nickname" />
         </mat-form-field>
         <!-- EMAIL -->
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-icon matPrefix>alternate_email</mat-icon>
           <mat-label>Email</mat-label>
           <input matInput [value]="user?.email" disabled />

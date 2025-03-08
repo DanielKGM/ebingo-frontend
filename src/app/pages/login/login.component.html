@@ -10,14 +10,19 @@
         [hasBackButton]="false"
       ></app-page-title>
       <!-- EMAIL -->
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="loginForm">
-        <mat-form-field>
+      <form
+        class="pt-4"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+        id="loginForm"
+      >
+        <mat-form-field appearance="outline">
           <mat-icon matPrefix>face</mat-icon>
           <mat-label>Apelido</mat-label>
           <input matInput formControlName="nickname" />
         </mat-form-field>
         <!-- SENHA -->
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-icon matPrefix>key</mat-icon>
           <mat-label>Senha</mat-label>
           <input
@@ -48,7 +53,6 @@
 
         <!-- Segundo botão -->
         <button mat-stroked-button button2 routerLink="/cadastro">
-          <mat-icon>person_add</mat-icon>
           Criar uma Conta
         </button>
       </app-action-buttons>

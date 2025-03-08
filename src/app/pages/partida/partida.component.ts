@@ -58,40 +58,27 @@ export class PartidaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.gameId = this.route.snapshot.paramMap.get('uuid')!;
+    this.game = this.route.snapshot.data['game'];
     const user = localStorage.getItem('user');
-    this.userId = user ? JSON.parse(user).id : null;
-    this.loadGame();
-  }
 
-  loadGame(): void {
-    this.gameService.getGameById(this.gameId).subscribe({
-      next: (game) => {
-        if (game) {
-          this.game = game;
-          this.drawnNumbers = game.drawnNumbers || [];
-          this.loadCard(); // Somente carrega a cartela se o jogo for válido
-        }
-      },
-      error: () => {
-        this.redirecionarErro();
-      },
-    });
-  }
-
-  redirecionarErro() {
-    this.snackbarService.showMessage('Erro ao carregar jogo!', 'bad');
-    this.router.navigate(['/jogos']);
+    if (!this.game || !user) {
+      this.router.navigate(['/jogos']);
+    } else {
+      this.userId = user ? JSON.parse(user).id : null;
+      this.gameId = this.game.id!;
+      this.drawnNumbers = this.game.drawnNumbers!;
+      this.loadCard();
+    }
   }
 
   loadCard(): void {
     this.gameService.getUserCard(this.gameId, this.userId).subscribe({
       next: (card) => {
-        this.card = card; // Carrega a cartela
+        this.card = card;
       },
       error: (error) => {
         this.snackbarService.showMessage(
-          error?.error?.message || 'Erro ao gerar cartela'
+          error?.error?.message || 'Erro ao carregar cartela!'
         );
       },
     });
@@ -137,8 +124,11 @@ export class PartidaComponent implements OnInit {
         this.game = updatedGame;
         this.drawnNumbers = updatedGame.drawnNumbers || [];
       },
-      error: () => {
-        this.snackbarService.showMessage('Erro ao sortear número!', 'bad');
+      error: (error) => {
+        this.snackbarService.showMessage(
+          error?.error?.message || 'Erro ao sortear número!',
+          'bad'
+        );
       },
     });
   }

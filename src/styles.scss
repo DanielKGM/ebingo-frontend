@@ -17,7 +17,6 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
 }
 
 a:hover {
@@ -28,6 +27,7 @@ a:hover {
 *,
 *::after,
 *::before {
+  user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
   -webkit-app-region: no-drag;
@@ -85,8 +85,13 @@ body {
 
   @include mat.button-overrides(
     (
-      outlined-outline-color: "var(--mat-sys-primary)",
-      outlined-outline-width: "2px",
+      outlined-outline-width: "1.5px",
+    )
+  );
+
+  @include mat.form-field-overrides(
+    (
+      outlined-outline-width: "1.5px",
     )
   );
 }

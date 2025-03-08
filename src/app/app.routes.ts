@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { gameResolver } from './resolvers/game.resolver';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,9 @@ export const routes: Routes = [
         (m) => m.FormularioJogoComponent
       );
     },
+    resolve: {
+      game: gameResolver,
+    },
   },
   {
     path: 'perfil',
@@ -56,6 +60,9 @@ export const routes: Routes = [
       return import('./pages/partida/partida.component').then(
         (m) => m.PartidaComponent
       );
+    },
+    resolve: {
+      game: gameResolver,
     },
   },
 ];
