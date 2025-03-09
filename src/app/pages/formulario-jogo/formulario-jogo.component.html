@@ -1,6 +1,6 @@
 <span appTemplate>
   <app-header [showSlogan]="false" [showUserInfo]="true"> </app-header>
-  <app-main [hasFooterContent]="true">
+  <app-main>
     <!-- TITULO -->
     <app-page-title
       [hasBackButton]="false"
@@ -65,8 +65,8 @@
           <mat-form-field>
             <mat-label>Tamanho da Cartela</mat-label>
             <mat-select formControlName="cardSize" required>
-              <mat-option value="10">10 números</mat-option>
               <mat-option value="15">15 números</mat-option>
+              <mat-option value="20">20 números</mat-option>
               <mat-option value="25">25 números</mat-option>
             </mat-select>
           </mat-form-field>

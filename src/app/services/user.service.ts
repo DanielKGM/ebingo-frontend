@@ -2,7 +2,7 @@ import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UserDTO } from '../dto/user.dto';
 
 @Injectable({
@@ -23,7 +23,6 @@ export class UserService {
   updateNickname(
     nickname: string
   ): Observable<{ token: string; user: UserDTO }> {
-    console.log(`${this.apiUrl}/update`);
     const user = this.getUser();
     if (!user) throw new Error('Usuário não encontrado no localStorage');
 

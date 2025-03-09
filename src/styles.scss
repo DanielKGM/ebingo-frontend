@@ -34,15 +34,20 @@ a:hover {
 }
 
 /* Estilo do scroll */
+
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 4px solid rgba(0, 0, 0, 0);
-  background-clip: padding-box;
-  border-radius: 9999px;
-  background-color: #aaaaaa;
+  border-radius: 10px;
+  background-color: var(--mat-sys-outline);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
 }
 
 html {
@@ -51,6 +56,7 @@ html {
     rgba(var(--lt-or), 1) 80%,
     rgba(var(--or), 1) 100%
   );
+  overflow: hidden;
 }
 
 /* Corpo e estilos globais Material */

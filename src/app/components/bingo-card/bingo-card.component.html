@@ -1,11 +1,17 @@
-<div class="bingo-card w-full rounded-xl">
-  @for (item of bingoItems; track $index; let i = $index) {
-  <div
-    class="bingo-card__item"
-    [class.active]="isMarked(item)"
-    (click)="toggleItem(item)"
-  >
-    {{ item }}
+<div class="bingo-container rounded-xl">
+  <div class="title">BINGO</div>
+  <div class="bingo-card">
+    @if(bingoItems.length == 0){
+    <button mat-stroked-button (click)="join.emit()">ENTRAR NO JOGO</button>
+    } @for (item of bingoItems; track $index; let i = $index) {
+    <div
+      class="bingo-card__item"
+      [class.active]="isMarked(item)"
+      (click)="toggleItem(item)"
+      (keyup)="toggleItem(item)"
+    >
+      <span>{{ item }}</span>
+    </div>
+    }
   </div>
-  }
 </div>

@@ -3,8 +3,8 @@
 
 .dashboard {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 0.35fr 2fr;
+  grid-template-columns: 0.6fr 2.4fr 1fr;
+  grid-template-rows: 0fr 1fr;
   gap: 1rem 1rem;
   grid-auto-flow: row;
   grid-template-areas:
@@ -29,8 +29,6 @@
 }
 
 .game-actions {
-  margin-top: 2rem;
-  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -52,33 +50,20 @@
 /*NUMEROS INICIO*/
 .numbers {
   grid-area: numbers;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
-  position: relative;
-  white-space: nowrap;
 }
 
 .numbers-container {
   display: flex;
   align-items: center;
-  gap: 10px;
-  height: 100%;
+  gap: 0.5rem;
 }
 
-.draw-button {
-  width: 40px;
-  height: 40px;
-  background-color: var(--mat-sys-primary);
-  color: white;
-  border-radius: 50%;
+.numbers-list {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
 }
 
 .draw-button,
@@ -92,10 +77,13 @@
   justify-content: center;
   font-size: 1.2rem;
   flex-shrink: 0;
+  background-color: var(--mat-sys-primary);
+  box-shadow: 0px 0px 4px var(--mat-sys-primary);
 }
 
+/*NUMEROS */
+
 .draw-button {
-  background-color: var(--mat-sys-primary);
   cursor: pointer;
   transition: background-color 0.3s ease;
   &:hover {
@@ -103,19 +91,9 @@
   }
 }
 
-.number-circle {
-  background-color: blue;
-}
-
-.numbers-list {
-  display: flex;
-  flex-direction: row-reverse; /* Inverte a ordem dos números */
-  gap: 10px;
-  flex-wrap: nowrap;
-}
-
 .number-circle.recent {
   background-color: green;
+  box-shadow: 0px 0px 4px green;
 }
 
 /*NUMEROS FIM*/

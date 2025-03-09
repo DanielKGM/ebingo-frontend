@@ -3,46 +3,69 @@ $yellow-dark: #f7d75c;
 $orange: #fdb90b;
 $orange-dark: #f2ae00;
 
+.bingo-container {
+  background: $orange;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  box-shadow: var(--mat-sys-level1);
+}
+
+.title {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px 0;
+}
+
 .bingo-card {
   background: $yellow-dark;
-  padding: 10px;
+  padding: 0.5rem;
   display: grid;
-  grid-gap: 3px;
-  grid-template-rows: repeat(1fr, 1fr);
+  grid-gap: 0.2rem;
+  flex-grow: 1;
+  grid-template-rows: repeat(5, minmax(1fr, 1fr));
   grid-template-columns: repeat(5, 1fr);
-  box-shadow: var(--mat-sys-level1);
+  overflow: auto;
+}
 
-  &__item {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background: $yellow-light;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+.bingo-card__item {
+  background: $yellow-light;
+  position: relative;
+  user-select: none;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centraliza horizontalmente */
+
+  &:not(.active) {
     cursor: pointer;
-    user-select: none;
-    font-size: 2rem;
-    &.active {
-      &:after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        background-color: $orange;
-        mask-image: url("/check-mark.svg");
-        -webkit-mask-image: url("/checkmark.svg");
-        mask-size: contain;
-        -webkit-mask-size: contain;
-        mask-repeat: no-repeat;
-        -webkit-mask-repeat: no-repeat;
-        mask-position: center;
-        -webkit-mask-position: center;
-        transform: translate(-50%, -50%);
-        opacity: 0.8;
-      }
+  }
+
+  &.active {
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background-color: $orange;
+      transform: translate(-50%, -50%);
+      opacity: 0.8;
+      mask-image: url("/check-mark.svg");
+      -webkit-mask-image: url("/checkmark.svg");
+      mask-size: contain;
+      -webkit-mask-size: contain;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-position: center;
     }
   }
 }

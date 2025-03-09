@@ -1,11 +1,11 @@
 import { AuthService } from './../../services/auth.service';
-import { Component, input, OnInit, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { UserInfoComponent } from '../user-info/user-info.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
-
+import { LogoComponent } from '../logo/logo.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,27 +16,17 @@ import { Router, RouterLink } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     RouterLink,
+    LogoComponent,
   ],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   showSlogan = input.required<boolean>();
-  ballSize = signal('80px');
-  textSize = signal('3rem');
-  borderSize = signal('3px');
   showUserInfo = input(false);
 
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router
   ) {}
-
-  ngOnInit() {
-    if (!this.showSlogan()) {
-      this.ballSize.set('60px');
-      this.textSize.set('2rem');
-      this.borderSize.set('2.5px');
-    }
-  }
 
   logout() {
     this.authService.logout();

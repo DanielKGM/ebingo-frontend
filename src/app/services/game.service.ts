@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
-import { GameDto } from '../dto/game.dto';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { GameCardDto, GameDto, GameFilterDto } from '../dto/game.dto';
 import { Observable } from 'rxjs';
 import { CardDto } from '../dto/card.dto';
 
@@ -23,19 +23,18 @@ export class GameService {
     return this.http.put<GameDto>(`${this.apiUrl}/${id}`, game);
   }
 
-  // Filtrar jogos por nome da sala e status
-  filterGames(roomName: string, status: string): Observable<GameDto[]> {
-    return this.http.get<GameDto[]>(`${this.apiUrl}/filter`, {
-      params: {
-        roomName: roomName,
-        status: status,
-      },
-    });
-  }
+  // Obter Lista Filtrada de Jogos
+  getGames(filter: GameFilterDto): Observable<GameCardDto[]> {
+    let params = new HttpParams();
 
-  // Obter todos os jogos
-  getAllGames(): Observable<GameDto[]> {
-    return this.http.get<GameDto[]>(this.apiUrl);
+    if (filter.roomName) {
+      params = params.set('roomName', filter.roomName);
+    }
+    if (filter.status) {
+      params = params.set('status', filter.status);
+    }
+
+    return this.http.get<GameCardDto[]>(this.apiUrl, { params });
   }
 
   // Deletar um jogo
@@ -68,7 +67,7 @@ export class GameService {
     return this.http.post<number[]>(`${this.apiUrl}/${gameId}/mark`, null, {
       params: {
         userId,
-        number: number.toString(),
+        number: number,
       },
     });
   }

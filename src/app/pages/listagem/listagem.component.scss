@@ -7,15 +7,10 @@ mat-form-field {
   width: 11rem;
 }
 
-.map {
+#filter {
   @include mat.theme(
     (
       density: -4,
-    )
-  );
-  @include mat.button-overrides(
-    (
-      filled-container-height: 30px,
     )
   );
 }
@@ -25,7 +20,8 @@ mat-form-field {
     flex-direction: column;
     align-items: stretch;
   }
-  #titulowrap {
+
+  #titulo-container {
     order: -1;
   }
 

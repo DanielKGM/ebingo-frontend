@@ -10,6 +10,7 @@ export class BingoCardComponent {
   @Input() bingoItems: number[] = [];
   @Input() markedNumbers: number[] = [];
   @Output() markNumber = new EventEmitter<number>();
+  @Output() join = new EventEmitter<void>();
 
   isMarked(num: number): boolean {
     return this.markedNumbers.includes(num);

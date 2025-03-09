@@ -72,20 +72,19 @@ export class FormularioJogoComponent implements OnInit {
       roomName: ['', Validators.required],
       startTime: ['', Validators.required],
       prize: [''],
-      cardSize: [null, Validators.required],
+      cardSize: ['', Validators.required],
       manualFill: [false],
     });
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.gameId = params.get('gameId');
+    let game = this.route.snapshot.data['game'];
 
-      if (this.gameId) {
-        this.isEditing = true;
-        this.loadGameDetails();
-      }
-    });
+    if (game?.id) {
+      this.gameId = game.id;
+      this.isEditing = true;
+      this.loadGameDetails(game);
+    }
   }
 
   dateFilter = (d: Date | null): boolean => {
@@ -98,24 +97,24 @@ export class FormularioJogoComponent implements OnInit {
   }
 
   // Preenche os campos do formulário com os dados do jogo
-  loadGameDetails(): void {
-    if (this.gameId) {
-      this.gameService.getGameById(this.gameId).subscribe({
-        next: (game) => {
-          this.gameForm.setValue({
-            roomName: game.roomName,
-            startTime: game.startTime,
-            prize: game.prize,
-            cardSize: game.cardSize,
-            manualFill: game.manualFill,
-          });
-        },
-        error: () => {
-          this.snackbarService.showMessage('Erro ao carregar jogo!', 'bad');
-          this.goBack();
-        },
+  loadGameDetails(game: GameDto): void {
+    if (game) {
+      this.gameForm.setValue({
+        roomName: game.roomName,
+        startTime: game.startTime,
+        prize: game.prize,
+        cardSize: game.cardSize,
+        manualFill: game.manualFill,
       });
     }
+  }
+
+  private convertDate(date: Date | null): Date {
+    if (!date) return new Date();
+    const parsedDate = date instanceof Date ? date : new Date(date);
+    return new Date(
+      parsedDate.getTime() - parsedDate.getTimezoneOffset() * 60000
+    );
   }
 
   submitForm(): void {
@@ -129,7 +128,7 @@ export class FormularioJogoComponent implements OnInit {
 
     const gameData: GameDto = {
       roomName: this.gameForm.value.roomName,
-      startTime: this.gameForm.value.startTime,
+      startTime: this.convertDate(this.gameForm.value.startTime),
       prize: this.gameForm.value.prize,
       cardSize: this.gameForm.value.cardSize,
       manualFill: this.gameForm.value.manualFill,
@@ -139,15 +138,18 @@ export class FormularioJogoComponent implements OnInit {
     if (this.isEditing && this.gameId) {
       // Se for edição, chama o serviço de atualização
       this.gameService.updateGame(this.gameId, gameData).subscribe({
-        next: (updatedGame) => {
+        next: () => {
           this.snackbarService.showMessage(
             'Jogo atualizado com sucesso!',
             'good'
           );
           this.goBack();
         },
-        error: () => {
-          this.snackbarService.showMessage('Erro ao atualizar jogo!', 'bad');
+        error: (error) => {
+          this.snackbarService.showMessage(
+            error?.error?.message || 'Erro ao atualizar jogo!',
+            'bad'
+          );
         },
       });
     } else {
@@ -157,8 +159,11 @@ export class FormularioJogoComponent implements OnInit {
           this.snackbarService.showMessage('Jogo criado com sucesso!', 'good');
           this.router.navigate(['/jogos/' + newGame.id]);
         },
-        error: () => {
-          this.snackbarService.showMessage('Erro ao criar jogo!', 'bad');
+        error: (error) => {
+          this.snackbarService.showMessage(
+            error?.error?.message || 'Erro ao criar jogo!',
+            'bad'
+          );
         },
       });
     }

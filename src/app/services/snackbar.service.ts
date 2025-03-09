@@ -8,33 +8,45 @@ type TipoMensagem = 'default' | 'bad' | 'good';
   providedIn: 'root',
 })
 export class SnackbarService {
-  constructor(private readonly snackBar: MatSnackBar) {}
+  private readonly sfx: { [key in TipoMensagem]?: HTMLAudioElement } = {};
+
+  constructor(private readonly snackBar: MatSnackBar) {
+    this.preloadAudio();
+  }
+
+  private preloadAudio() {
+    ['default', 'good', 'bad'].forEach((type) => {
+      this.sfx[type as TipoMensagem] = new Audio(`${type}.mp3`);
+    });
+  }
 
   showMessage(
     message: string,
     type: TipoMensagem = 'default',
     duration: number = 3000
-  ): void {
+  ) {
     this.setSnackbarColor(type);
-    let audio = new Audio(type + '.mp3');
-    audio.load();
-    audio.currentTime = 0;
-    audio.play().then(() =>
-      this.snackBar.openFromComponent(SnackbarComponent, {
-        data: { message, type },
-        duration,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-      })
-    );
+
+    const audio = this.sfx[type];
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play().then(() => {
+        this.snackBar.openFromComponent(SnackbarComponent, {
+          data: { message, type },
+          duration,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+        });
+      });
+    }
   }
 
   private setSnackbarColor(type: TipoMensagem): void {
-    let color = '';
-
-    if (type === 'good') color = '#388e3c';
-    if (type === 'bad') color = '#d32f2f';
-
-    document.documentElement.style.setProperty('--sbColor', color);
+    const colors: { [key in TipoMensagem]: string } = {
+      default: '',
+      good: '#388e3c',
+      bad: '#d32f2f',
+    };
+    document.documentElement.style.setProperty('--sbColor', colors[type]);
   }
 }

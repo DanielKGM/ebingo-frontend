@@ -69,52 +69,36 @@
       [bingoItems]="card?.numbers ?? []"
       [markedNumbers]="card?.markedNumbers ?? []"
       (markNumber)="markNumber($event)"
+      (join)="joinGame()"
     ></app-bingo-card>
 
     <app-custom-container
       _title="PARTIDA"
       titleAlign="end"
       class="gameinfo"
+      classes="h-full flex flex-col justify-between"
       [ngClass]="{ hidden: this.selectedTab() != 'gameinfo' }"
     >
-      <!-- Container das informações do jogo -->
-      <div class="game-details">
+      <div class="gamedetails">
+        <!-- Container das informações do jogo -->
         <p>
           <span class="text-sm text-gray-500 block">Sala</span>
           <strong class="text-base font-semibold block">{{
-            game.roomName
+            game?.roomName
           }}</strong>
         </p>
         <p>
           <span class="text-sm text-gray-500 block mt-2">Início</span>
           <strong class="text-base font-semibold block">{{
-            game.startTime
-          }}</strong>
-        </p>
-        <p>
-          <span class="text-sm text-gray-500 block mt-2">Prêmio</span>
-          <strong class="text-base font-semibold block">{{
-            game.prize ?? "Não definido"
+            formattedDate
           }}</strong>
         </p>
       </div>
-
       <!-- Container dos botões de ação -->
       <div class="game-actions">
-        @if (!card && game.status === 'NAO_INICIADO') {
         <button mat-flat-button color="primary" disabled class="action-button">
           Clamar Prêmio
         </button>
-        } @else {
-        <button
-          mat-flat-button
-          color="primary"
-          (click)="joinGame()"
-          class="action-button"
-        >
-          Jogar!
-        </button>
-        } @if (game.status === 'NAO_INICIADO') {
         <button
           mat-fab
           color="accent"
@@ -123,7 +107,6 @@
         >
           <mat-icon>settings</mat-icon>
         </button>
-        }
       </div>
     </app-custom-container>
 
@@ -136,11 +119,11 @@
       }"
     >
       <div class="flex flex-col space-y-2">
-        @for (player of game.players ?? []; track $index) { @if ($index !== 0) {
+        @for (player of game?.players ?? []; track $index) { @if ($index !== 0)
+        {
         <hr class="border-t-2 border-gray-300 my-4" />
         }
         <div class="flex items-center gap-2 w-full">
-          <mat-icon class="text-blue-500 mr-2">person</mat-icon>
           <span class="font-bold">{{ player.nickname }}</span>
         </div>
         }

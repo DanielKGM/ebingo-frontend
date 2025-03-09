@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActionButtonsComponent } from '../../components/action-buttons/action-buttons.component';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { PageTitleComponent } from '../../components/page-title/page-title.component';
 import {
   FormBuilder,
@@ -19,7 +19,7 @@ import {
 } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { SnackbarService } from '../../services/snackbar.service';
-import { AuthService } from '../../services/auth.service';
+import { UserDTO } from '../../dto/user.dto';
 
 @Component({
   selector: 'app-perfil',
@@ -45,24 +45,26 @@ import { AuthService } from '../../services/auth.service';
 })
 export class PerfilComponent {
   perfilForm: FormGroup;
-  user = JSON.parse(localStorage.getItem('user')!);
+  user: UserDTO | null = null;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly usuarioService: UserService,
-    private readonly authService: AuthService,
+    private readonly route: ActivatedRoute,
     private readonly snackbarService: SnackbarService,
     private readonly router: Router
   ) {
+    this.user = this.route.snapshot.data['user'];
     this.perfilForm = this.fb.group({
-      nickname: [this.user.nickname, Validators.required],
+      nickname: ['', Validators.required],
+      email: [{ value: '', disabled: true }],
     });
   }
 
   ngOnInit(): void {
-    this.user = this.authService.getUser();
-
-    if (this.user) {
+    if (!this.user) {
+      this.router.navigate(['']);
+    } else {
       this.perfilForm.patchValue({
         nickname: this.user.nickname,
         email: this.user.email,

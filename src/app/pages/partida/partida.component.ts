@@ -34,15 +34,7 @@ export class PartidaComponent implements OnInit {
   readonly dialog = inject(MatDialog);
   selectedTab = signal<string>('card');
   userId!: string;
-  game: GameDto = {
-    id: '',
-    roomName: '',
-    startTime: '',
-    prize: '',
-    status: 'NAO_INICIADO',
-    players: [],
-    drawnNumbers: [],
-  };
+  game: GameDto | null;
   gameId!: string;
   card!: CardDto | null;
   drawnNumbers: number[] = [];
@@ -54,17 +46,16 @@ export class PartidaComponent implements OnInit {
     private readonly snackbarService: SnackbarService,
     private readonly router: Router
   ) {
-    this.markAudio.load();
+    this.game = this.route.snapshot.data['game'];
   }
 
   ngOnInit(): void {
-    this.game = this.route.snapshot.data['game'];
-    const user = localStorage.getItem('user');
+    const user = this.route.snapshot.data['user'];
 
     if (!this.game || !user) {
       this.router.navigate(['/jogos']);
     } else {
-      this.userId = user ? JSON.parse(user).id : null;
+      this.userId = user.id!;
       this.gameId = this.game.id!;
       this.drawnNumbers = this.game.drawnNumbers!;
       this.loadCard();
@@ -103,6 +94,18 @@ export class PartidaComponent implements OnInit {
     if (!this.card) return;
     if (!this.game) return;
 
+    if (
+      this.game.drawnNumbers?.find((element) => element == number) == undefined
+    ) {
+      this.snackbarService.showMessage(`O número ${number} não foi sorteado!`);
+      return;
+    }
+
+    if (this.game.winner) {
+      this.snackbarService.showMessage(`O jogo já tem um vencedor.`);
+      return;
+    }
+
     this.gameService.markNumber(this.gameId, this.userId, number).subscribe({
       next: (updatedMarkedNumbers) => {
         if (this.card) {
@@ -118,7 +121,20 @@ export class PartidaComponent implements OnInit {
     });
   }
 
+  get formattedDate(): string {
+    const date =
+      this.game?.status === 'NAO_INICIADO' || this.game?.status === 'INICIADO'
+        ? this.game?.startTime
+        : this.game?.endTime;
+
+    return date ? new Date(date).toLocaleString('pt-BR') : 'Sem data';
+  }
+
   drawNewNumber(): void {
+    if (this.game?.winner) {
+      this.snackbarService.showMessage('O jogo já tem um vencedor!', 'bad');
+      return;
+    }
     this.gameService.drawNumber(this.gameId).subscribe({
       next: (updatedGame) => {
         this.game = updatedGame;

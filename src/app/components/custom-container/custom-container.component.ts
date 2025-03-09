@@ -8,5 +8,5 @@ import { Component, input } from '@angular/core';
 export class CustomContainerComponent {
   _title = input<string | null>();
   titleAlign = input('start');
-  fill = input(true);
+  classes = input('');
 }

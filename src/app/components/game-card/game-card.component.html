@@ -1,0 +1,39 @@
+<div
+  class="wrapper p-4 mb-2 rounded-lg cursor-pointer"
+  [routerLink]="'/jogos/' + game.id"
+>
+  <div class="main-info">
+    <div class="room-title text-lg font-bold">{{ game.roomName }}</div>
+    <div class="status-info text-sm text-gray-600">
+      <span
+        class="inline-block mr-2 w-3 h-3 rounded-full"
+        [ngStyle]="{
+          'background-color': statusColor,
+          'box-shadow': '0 0 2px ' + statusColor
+        }"
+      ></span>
+      <span>{{ game.status }} - {{ formattedDate }}</span>
+    </div>
+  </div>
+
+  <div class="icon-info">
+    <div class="icon-item">
+      <img src="trophy.svg" alt="prize" class="w-6 h-6" />
+      <span class="text-sm text-gray-600">{{ game.prize ? "✔️" : "❌" }}</span>
+    </div>
+    <div class="icon-item">
+      <img src="user.svg" alt="players" class="w-6 h-6" />
+      <span class="text-sm text-gray-600">{{ game.players || 0 }}</span>
+    </div>
+    <div class="icon-item">
+      <img src="grid.svg" alt="card-size" class="w-6 h-6" />
+      <span class="text-sm text-gray-600">{{ game.cardSize }}</span>
+    </div>
+    <div class="icon-item">
+      <img src="hand.svg" alt="manual-fill" class="w-6 h-6" />
+      <span class="text-sm text-gray-600">{{
+        game.manualFill ? "✔️" : "❌"
+      }}</span>
+    </div>
+  </div>
+</div>

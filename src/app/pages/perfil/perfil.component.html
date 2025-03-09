@@ -11,13 +11,13 @@
         <mat-form-field appearance="outline">
           <mat-icon matPrefix>face</mat-icon>
           <mat-label>Apelido</mat-label>
-          <input matInput [value]="user?.nickname" formControlName="nickname" />
+          <input matInput formControlName="nickname" />
         </mat-form-field>
         <!-- EMAIL -->
         <mat-form-field appearance="outline">
           <mat-icon matPrefix>alternate_email</mat-icon>
           <mat-label>Email</mat-label>
-          <input matInput [value]="user?.email" disabled />
+          <input matInput formControlName="email" />
         </mat-form-field>
       </form>
       <!-- Ações -->

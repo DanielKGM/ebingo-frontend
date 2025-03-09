@@ -5,24 +5,26 @@
         >assignment</mat-icon
       >Como jogar?
     </a>
-    <button mat-mini-fab (click)="openTutorial()" mobile-buttons>
-      <mat-icon>assignment</mat-icon>
-    </button>
+    <mat-icon (click)="openTutorial()" (keyup)="openTutorial()" mobile-buttons
+      >assignment</mat-icon
+    >
+    <a class="text-sm" mobile-buttons>Como jogar?</a>
   </app-header>
-  <app-main class="map">
+  <app-main>
     <!-- PESQUISA -->
-    <div
+    <form
+      [formGroup]="filterForm"
       class="flex flex-row justify-between items-center w-full gap-3"
       id="filter"
       title-content
     >
       <mat-form-field appearance="outline" subscriptSizing="dynamic">
         <mat-label>Pesquisar</mat-label>
-        <input matInput />
+        <input matInput formControlName="roomName" />
         <mat-icon matPrefix>search</mat-icon>
       </mat-form-field>
-      <div id="titulowrap" class="flex flex-1 items-center">
-        <!-- TITULO -->
+      <!-- TITULO -->
+      <div id="titulo-container">
         <app-page-title
           class="flex-1"
           id="pgtitulo"
@@ -30,30 +32,33 @@
           [hasBackButton]="false"
           title="Listagem de jogos"
         ></app-page-title>
-
-        <!-- NOVO JOGO -->
-        <button mat-flat-button button2 routerLink="/jogos/form">
-          <mat-icon>add</mat-icon>
-          Novo Jogo
-        </button>
       </div>
       <!-- FILTRO -->
       <mat-form-field appearance="outline" subscriptSizing="dynamic">
         <mat-label>Filtrar Jogos</mat-label>
-        <mat-select>
-          <mat-option value="0">Não Iniciados</mat-option>
-          <mat-option value="1">Encerrados</mat-option>
-          <mat-option value="3">Participados</mat-option>
-          <mat-option value="4">Autorais</mat-option>
+        <mat-select formControlName="status">
+          <mat-option [value]="null">Todos</mat-option>
+          <mat-option value="INICIADO">Iniciados</mat-option>
+          <mat-option value="NAO_INICIADO">Não Iniciados</mat-option>
+          <mat-option value="ENCERRADO">Encerrados</mat-option>
+          <mat-option value="CANCELADO">Cancelados</mat-option>
+          <mat-option [value]="null">Participados</mat-option>
+          <mat-option [value]="null">Autorais</mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
+    </form>
     <!-- LISTAGEM -->
-    <a
-      class="text-white"
-      routerLink="/jogos/b84a85d8-14fb-4253-91aa-7eacbd6e980c"
-      >VISITAR UM JOGO DE TESTE</a
-    >
+    @for (game of games; track $index) {
+    <app-game-card [game]="game"></app-game-card>
+    }
+    <!-- Ações -->
+    <app-action-buttons [showSeparator]="false" footer-content>
+      <!-- Segundo botão -->
+      <button mat-flat-button button2 routerLink="form">
+        <mat-icon>add</mat-icon>
+        Novo Jogo
+      </button>
+    </app-action-buttons>
   </app-main>
   <app-footer> </app-footer>
 </div>

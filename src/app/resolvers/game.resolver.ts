@@ -1,4 +1,4 @@
-import { ResolveFn, Router } from '@angular/router';
+import { ResolveFn } from '@angular/router';
 import { GameDto } from '../dto/game.dto';
 import { inject } from '@angular/core';
 import { GameService } from '../services/game.service';

@@ -1,4 +1,4 @@
-<div class="relative flex flex-col {{ fill() ? 'h-full w-full' : '' }}">
+<div class="relative flex flex-col h-full w-full">
   @if (_title()) {
   <div
     class="ttl self-{{
@@ -13,8 +13,14 @@
   <div
     class="{{
       _title() ? 'pt-7' : 'pt-4'
-    }} pb-2 px-4 overflow-auto h-full w-full bg-[var(--mat-sys-surface-container-low)] rounded-xl"
-    style="box-shadow: var(--mat-sys-level1); z-index: 0"
+    }} pb-4 px-4 overflow-auto inset-0 h-full w-full bg-[var(--mat-sys-surface-container-low)] rounded-xl {{
+      classes()
+    }}"
+    style="
+      box-shadow: var(--mat-sys-level1);
+      z-index: 0;
+      scrollbar-gutter: stable;
+    "
   >
     <ng-content />
   </div>

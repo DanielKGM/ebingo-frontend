@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { gameResolver } from './resolvers/game.resolver';
+import { userResolver } from './resolvers/user.resolver';
 
 export const routes: Routes = [
   {
@@ -36,7 +37,7 @@ export const routes: Routes = [
     },
   },
   {
-    path: 'jogos/form/:gameId',
+    path: 'jogos/form/:uuid',
     loadComponent: () => {
       return import('./pages/formulario-jogo/formulario-jogo.component').then(
         (m) => m.FormularioJogoComponent
@@ -53,6 +54,9 @@ export const routes: Routes = [
         (m) => m.PerfilComponent
       );
     },
+    resolve: {
+      user: userResolver,
+    },
   },
   {
     path: 'jogos/:uuid',
@@ -63,6 +67,7 @@ export const routes: Routes = [
     },
     resolve: {
       game: gameResolver,
+      user: userResolver,
     },
   },
 ];
