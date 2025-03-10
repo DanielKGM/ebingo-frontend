@@ -21,11 +21,9 @@ export class GameWebsocketService {
       debug: (str) => console.log(str),
       reconnectDelay: 5000,
       onConnect: () => {
-        console.log('✅ WebSocket conectado!');
         this.isConnected.next(true); // 🔹 Atualiza estado da conexão
       },
       onDisconnect: () => {
-        console.log('❌ WebSocket desconectado!');
         this.isConnected.next(false);
       },
       onStompError: (frame) => {
@@ -39,8 +37,6 @@ export class GameWebsocketService {
   subscribeToGame(gameId: string) {
     this.isConnected.subscribe((connected) => {
       if (connected) {
-        console.log(`🔹 Tentando se inscrever no jogo ${gameId}`);
-
         if (this.subscription) {
           this.subscription.unsubscribe();
         }
@@ -52,8 +48,6 @@ export class GameWebsocketService {
             this.gameUpdates$.next(updatedGame);
           }
         );
-
-        console.log('✅ Inscrito com sucesso no jogo!');
       }
     });
   }

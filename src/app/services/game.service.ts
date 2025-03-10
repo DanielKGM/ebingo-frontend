@@ -83,10 +83,8 @@ export class GameService {
   }
 
   // Buscar o prêmio do jogo para um usuário específico
-  getPrize(gameId: string, userId: string): Observable<string> {
-    return this.http.get<string>(`${this.apiUrl}/${gameId}/prize`, {
-      params: { userId },
-    });
+  getPrize(gameId: string): Observable<string> {
+    return this.http.get<string>(`${this.apiUrl}/${gameId}/prize`);
   }
 
   getUserCard(gameId: string, userId: string): Observable<CardDto> {

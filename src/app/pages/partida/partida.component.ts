@@ -14,6 +14,7 @@ import { CardDto } from '../../dto/card.dto';
 import { GameService } from '../../services/game.service';
 import { SnackbarService } from '../../services/snackbar.service';
 import { GameWebsocketService } from '../../services/game.ws.service';
+import { PremioComponent } from '../../components/premio/premio.component';
 
 @Component({
   selector: 'app-partida',
@@ -178,6 +179,20 @@ export class PartidaComponent implements OnInit, OnDestroy {
 
   openAudit() {
     this.dialog.open(AuditComponent, { data: { gameId: this.gameId } });
+  }
+
+  showPremio() {
+    this.gameService.getPrize(this.gameId).subscribe({
+      next: (value) => {
+        this.dialog.open(PremioComponent, { data: value });
+      },
+      error: (error) => {
+        this.snackbarService.showMessage(
+          error?.error?.message || 'Erro ao visualizar o prêmio!',
+          'bad'
+        );
+      },
+    });
   }
 
   setSelectedTab(tab: string) {

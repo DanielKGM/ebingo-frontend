@@ -98,7 +98,12 @@
       </div>
       <!-- Container dos botões de ação -->
       <div class="game-actions">
-        <button mat-flat-button color="primary" disabled class="action-button">
+        <button
+          mat-flat-button
+          color="primary"
+          class="action-button"
+          (click)="showPremio()"
+        >
           Clamar Prêmio
         </button>
         @if(isAdm){
