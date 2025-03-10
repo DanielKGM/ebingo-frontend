@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import { GameDto } from '../../dto/game.dto';
 import { CardDto } from '../../dto/card.dto';
 import { GameService } from '../../services/game.service';
 import { SnackbarService } from '../../services/snackbar.service';
+import { GameWebsocketService } from '../../services/game.ws.service';
 
 @Component({
   selector: 'app-partida',
@@ -30,7 +31,7 @@ import { SnackbarService } from '../../services/snackbar.service';
   templateUrl: './partida.component.html',
   styleUrl: './partida.component.scss',
 })
-export class PartidaComponent implements OnInit {
+export class PartidaComponent implements OnInit, OnDestroy {
   readonly dialog = inject(MatDialog);
   selectedTab = signal<string>('card');
   userId!: string;
@@ -44,6 +45,7 @@ export class PartidaComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly gameService: GameService,
+    private readonly wsService: GameWebsocketService,
     private readonly snackbarService: SnackbarService,
     private readonly router: Router
   ) {
@@ -57,12 +59,27 @@ export class PartidaComponent implements OnInit {
 
     if (!this.game || !user) {
       this.router.navigate(['/jogos']);
-    } else {
-      this.userId = user.id!;
-      this.gameId = this.game.id!;
-      this.drawnNumbers = this.game.drawnNumbers!;
-      this.loadCard();
     }
+    this.userId = user.id!;
+    this.gameId = this.game?.id!;
+    this.drawnNumbers = this.game?.drawnNumbers!;
+    this.connectWebsocket();
+    this.loadCard();
+  }
+
+  private connectWebsocket() {
+    this.wsService.connect();
+    this.wsService.subscribeToGame(this.gameId);
+    this.wsService.gameUpdates$.subscribe((updatedGame) => {
+      if (updatedGame) {
+        this.game = updatedGame;
+        this.drawnNumbers = updatedGame.drawnNumbers || [];
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.wsService.disconnect();
   }
 
   loadCard(): void {

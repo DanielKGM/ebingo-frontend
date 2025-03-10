@@ -20,12 +20,21 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "@stomp/stompjs": "^7.0.1",
     "@tailwindcss/vite": "^4.0.3",
+    "@types/sockjs-client": "^1.5.4",
     "ebingo-frontend": "file:",
+    "global": "^4.4.0",
     "postcss": "^8.5.1",
+    "process": "^0.11.10",
     "rxjs": "~7.8.0",
+    "sockjs-client": "^1.6.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
+  },
+  "browser": {
+    "global": "global",
+    "process": "process/browser"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.1.4",
