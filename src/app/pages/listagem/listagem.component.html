@@ -41,7 +41,6 @@
           <mat-option value="INICIADO">Iniciados</mat-option>
           <mat-option value="NAO_INICIADO">Não Iniciados</mat-option>
           <mat-option value="ENCERRADO">Encerrados</mat-option>
-          <mat-option value="CANCELADO">Cancelados</mat-option>
           <mat-option [value]="null">Participados</mat-option>
           <mat-option [value]="null">Autorais</mat-option>
         </mat-select>
@@ -52,6 +51,7 @@
     <app-game-card [game]="game"></app-game-card>
     }
     <!-- Ações -->
+    @if (isAdm) {
     <app-action-buttons [showSeparator]="false" footer-content>
       <!-- Segundo botão -->
       <button mat-flat-button button2 routerLink="form">
@@ -59,6 +59,7 @@
         Novo Jogo
       </button>
     </app-action-buttons>
+    }
   </app-main>
   <app-footer> </app-footer>
 </div>

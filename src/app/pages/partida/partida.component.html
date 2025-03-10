@@ -8,7 +8,7 @@
     <a class="relative text-lg" right-content (click)="openAudit()">
       <mat-icon class="absolute -left-8 top-1/2 -translate-y-1/2"
         >assignment</mat-icon
-      >Auditoria
+      >Histórico
     </a>
   </app-header>
   <main class="dashboard">
@@ -40,6 +40,7 @@
       class="numbers"
     >
       <div class="numbers-container">
+        @if(isAdm){
         <div
           class="draw-button"
           (click)="drawNewNumber()"
@@ -47,6 +48,7 @@
         >
           <span>+</span>
         </div>
+        }
 
         <div class="numbers-list">
           @for (number of drawnNumbers; track $index) {
@@ -99,6 +101,7 @@
         <button mat-flat-button color="primary" disabled class="action-button">
           Clamar Prêmio
         </button>
+        @if(isAdm){
         <button
           mat-fab
           color="accent"
@@ -107,6 +110,7 @@
         >
           <mat-icon>settings</mat-icon>
         </button>
+        }
       </div>
     </app-custom-container>
 

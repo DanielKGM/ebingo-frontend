@@ -1,7 +1,15 @@
 import { UserDTO } from './../dto/user.dto';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, switchMap, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  map,
+  Observable,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { environment } from '../../environments/environment.development';
 
 @Injectable({
@@ -9,9 +17,7 @@ import { environment } from '../../environments/environment.development';
 })
 export class AuthService {
   private readonly apiUrl = `${environment.apiUrl}/auth`;
-  private readonly authStatusSubject = new BehaviorSubject<boolean>(
-    this.isAuthenticated()
-  );
+  private readonly authStatusSubject = new BehaviorSubject<boolean>(false);
   authStatus$ = this.authStatusSubject.asObservable();
 
   constructor(private readonly http: HttpClient) {
@@ -48,14 +54,29 @@ export class AuthService {
       );
   }
 
+  getRoles(): Observable<string[]> {
+    const token = localStorage.getItem('token');
+    return this.http.get<string[]>(`${this.apiUrl}/roles`, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
+    });
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.authStatusSubject.next(false);
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+  isAuthenticated(): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}`).pipe(
+      map((isAuthenticated) => {
+        this.authStatusSubject.next(isAuthenticated);
+        return isAuthenticated;
+      }),
+      catchError(() => {
+        return of(false);
+      })
+    );
   }
 
   getUser(): UserDTO | null {

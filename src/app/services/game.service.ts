@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { GameCardDto, GameDto, GameFilterDto } from '../dto/game.dto';
+import {
+  GameAuditDto,
+  GameCardDto,
+  GameDto,
+  GameFilterDto,
+} from '../dto/game.dto';
 import { Observable } from 'rxjs';
 import { CardDto } from '../dto/card.dto';
 
@@ -70,6 +75,11 @@ export class GameService {
         number: number,
       },
     });
+  }
+
+  // Auditoria
+  getAudits(gameId: string): Observable<GameAuditDto[]> {
+    return this.http.get<GameAuditDto[]>(`${this.apiUrl}/${gameId}/audit`);
   }
 
   // Buscar o prêmio do jogo para um usuário específico

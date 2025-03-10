@@ -1,47 +1,7 @@
-<app-dialog-template title="Auditoria">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non nisi vel
-  mi iaculis consectetur sed vitae nisl. Aliquam scelerisque aliquam ipsum sit
-  amet sodales. Aenean suscipit lobortis felis, sit amet vehicula nisi tempus
-  non. Donec ac tempus odio, sed sollicitudin justo. Cras bibendum pellentesque
-  eros semper pharetra. Aenean quis vulputate nisi. Aliquam faucibus lacus
-  ligula, sed dapibus ipsum elementum id. Nulla quis libero elit. Praesent eget
-  purus egestas ante porttitor interdum. Maecenas eleifend ex nisl, at placerat
-  lectus lacinia nec. Nunc sodales dolor et quam tempus, non pellentesque ipsum
-  venenatis. Ut feugiat, augue sagittis tempus sagittis, leo turpis venenatis
-  ipsum, in mollis risus sapien vel nulla. Ut varius justo nisl, quis interdum
-  libero dignissim eget. Etiam euismod consectetur congue. Fusce id fringilla
-  tortor. Pellentesque scelerisque, neque id malesuada aliquam, leo tortor
-  eleifend mi, quis rutrum ligula tortor sit amet dui. Nullam finibus dapibus
-  orci. Mauris urna odio, auctor non dignissim vitae, pretium vel sem. Morbi
-  eleifend molestie leo, eu gravida orci rutrum in. Curabitur interdum id mi
-  tempor gravida. Vestibulum aliquam rhoncus mi, sed molestie nibh lobortis vel.
-  Mauris sit amet mattis mi. Vivamus vehicula ullamcorper dui eget posuere.
-  Maecenas pellentesque, quam molestie egestas lobortis, turpis elit suscipit
-  arcu, ut aliquet tortor ligula eget elit. Aliquam bibendum mattis lacus quis
-  tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-  Suspendisse tincidunt dignissim justo. Vestibulum pharetra imperdiet mauris
-  vel fringilla. Sed eget aliquet nisi, non euismod enim. Nulla sem lectus,
-  rhoncus eget nunc sed, rhoncus sodales diam. Nullam eu orci ullamcorper,
-  pharetra ante nec, laoreet sapien. Ut malesuada, libero a sodales sodales,
-  odio mi lacinia augue, at suscipit lacus justo in lacus. Aliquam nec
-  sollicitudin dui. Proin vel tellus vel nulla dictum facilisis. Curabitur
-  rhoncus sit amet tortor et volutpat. Aliquam eget turpis eu sapien convallis
-  viverra. Donec congue dictum turpis tristique fringilla. Cras ac eros magna.
-  Maecenas bibendum quis eros a lobortis. Morbi sed nulla fermentum, maximus
-  nulla vitae, tempor leo. Donec vel placerat ante. Fusce hendrerit imperdiet
-  leo, blandit sollicitudin ligula accumsan et. Integer ac sem ornare ligula
-  ultrices accumsan eu quis massa. Integer id vulputate diam. Nunc at mattis
-  dui, ac posuere tellus. Vivamus nisl felis, sollicitudin vel lacus tincidunt,
-  accumsan pulvinar arcu. Integer sed ipsum ac erat dignissim volutpat.
-  Suspendisse hendrerit turpis in lectus congue, ut egestas metus condimentum.
-  Duis pellentesque lorem non dolor pellentesque commodo. Curabitur vitae ligula
-  a magna finibus ullamcorper. Maecenas in hendrerit nulla, vel molestie erat.
-  Phasellus convallis molestie pharetra. Nullam sapien massa, molestie a libero
-  tempus, venenatis rutrum ante. Nam ante tortor, molestie at viverra venenatis,
-  imperdiet id dolor. Proin ultricies ultricies nunc, et molestie ante cursus
-  ac. Aenean a porttitor diam. Cras sagittis pharetra felis, vel tincidunt
-  dolor. Maecenas semper vestibulum dui, non mattis dolor elementum et. Sed
-  efficitur dolor justo. Etiam ex tellus, bibendum vitae libero eu, sagittis
-  congue dui. Quisque id suscipit nibh. Integer vehicula cursus dui dapibus
-  porttitor.
+<app-dialog-template title="Histórico">
+  <ul>
+    @for (audit of audits; track $index) {
+    <li>{{ audit.nickname }} - {{ audit.action }} - {{ audit.timestamp }}</li>
+    }
+  </ul>
 </app-dialog-template>

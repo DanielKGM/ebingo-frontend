@@ -29,6 +29,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-listagem',
@@ -59,6 +60,7 @@ export class ListagemComponent {
   games: GameCardDto[] = [];
   readonly dialog = inject(MatDialog);
   filterForm: FormGroup;
+  isAdm: boolean;
 
   constructor(
     private readonly gameService: GameService,
@@ -70,6 +72,9 @@ export class ListagemComponent {
       roomName: [''],
       status: [''],
     });
+
+    let roles = localStorage.getItem('roles');
+    this.isAdm = (roles! ? roles.split(',') : []).includes('ROLE_ADMIN');
 
     this.filterForm.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged())

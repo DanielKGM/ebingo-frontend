@@ -30,3 +30,10 @@ export interface GameFilterDto {
   roomName?: string | null;
   status?: 'NAO_INICIADO' | 'INICIADO' | 'ENCERRADO' | 'CANCELADO' | null;
 }
+
+export interface GameAuditDto {
+  nickname: string;
+  game: GameDto;
+  action: string;
+  timestamp: Date;
+}

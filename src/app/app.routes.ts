@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { gameResolver } from './resolvers/game.resolver';
 import { userResolver } from './resolvers/user.resolver';
+import { rolesGuard } from './guards/roles.guard';
+import { anonGuard } from './guards/anon.guard';
 
 export const routes: Routes = [
   {
@@ -11,6 +13,7 @@ export const routes: Routes = [
         (m) => m.LoginComponent
       );
     },
+    canActivate: [anonGuard],
   },
   {
     path: 'cadastro',
@@ -19,6 +22,7 @@ export const routes: Routes = [
         (m) => m.CadastroComponent
       );
     },
+    canActivate: [anonGuard],
   },
   {
     path: 'jogos',
@@ -27,6 +31,8 @@ export const routes: Routes = [
         (m) => m.ListagemComponent
       );
     },
+    canActivate: [rolesGuard],
+    data: { roles: ['ROLE_USER'] },
   },
   {
     path: 'jogos/form',
@@ -35,6 +41,8 @@ export const routes: Routes = [
         (m) => m.FormularioJogoComponent
       );
     },
+    canActivate: [rolesGuard],
+    data: { roles: ['ROLE_ADMIN'] },
   },
   {
     path: 'jogos/form/:uuid',
@@ -46,6 +54,8 @@ export const routes: Routes = [
     resolve: {
       game: gameResolver,
     },
+    canActivate: [rolesGuard],
+    data: { roles: ['ROLE_ADMIN'] },
   },
   {
     path: 'perfil',
@@ -57,6 +67,8 @@ export const routes: Routes = [
     resolve: {
       user: userResolver,
     },
+    canActivate: [rolesGuard],
+    data: { roles: ['ROLE_USER'] },
   },
   {
     path: 'jogos/:uuid',
@@ -69,5 +81,11 @@ export const routes: Routes = [
       game: gameResolver,
       user: userResolver,
     },
+    canActivate: [rolesGuard],
+    data: { roles: ['ROLE_USER'] },
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];

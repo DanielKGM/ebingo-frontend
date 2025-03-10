@@ -38,6 +38,7 @@ export class PartidaComponent implements OnInit {
   gameId!: string;
   card!: CardDto | null;
   drawnNumbers: number[] = [];
+  isAdm: boolean;
   markAudio: HTMLAudioElement = new Audio('pentip.mp3');
 
   constructor(
@@ -46,6 +47,8 @@ export class PartidaComponent implements OnInit {
     private readonly snackbarService: SnackbarService,
     private readonly router: Router
   ) {
+    let roles = localStorage.getItem('roles');
+    this.isAdm = (roles! ? roles.split(',') : []).includes('ROLE_ADMIN');
     this.game = this.route.snapshot.data['game'];
   }
 
@@ -135,6 +138,13 @@ export class PartidaComponent implements OnInit {
       this.snackbarService.showMessage('O jogo já tem um vencedor!', 'bad');
       return;
     }
+    if (this.game?.drawnNumbers!?.length > 59) {
+      this.snackbarService.showMessage(
+        'Todos os números já foram sorteados!',
+        'bad'
+      );
+      return;
+    }
     this.gameService.drawNumber(this.gameId).subscribe({
       next: (updatedGame) => {
         this.game = updatedGame;
@@ -150,7 +160,7 @@ export class PartidaComponent implements OnInit {
   }
 
   openAudit() {
-    this.dialog.open(AuditComponent);
+    this.dialog.open(AuditComponent, { data: { gameId: this.gameId } });
   }
 
   setSelectedTab(tab: string) {
