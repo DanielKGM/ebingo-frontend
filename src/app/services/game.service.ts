@@ -9,6 +9,7 @@ import {
 } from '../dto/game.dto';
 import { Observable } from 'rxjs';
 import { CardDto } from '../dto/card.dto';
+import { RankingDTO } from '../dto/user.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -80,6 +81,11 @@ export class GameService {
   // Auditoria
   getAudits(gameId: string): Observable<GameAuditDto[]> {
     return this.http.get<GameAuditDto[]>(`${this.apiUrl}/${gameId}/audit`);
+  }
+
+  // Auditoria
+  getRanking(gameId: string): Observable<RankingDTO[]> {
+    return this.http.get<RankingDTO[]>(`${this.apiUrl}/${gameId}/ranking`);
   }
 
   // Buscar o prêmio do jogo para um usuário específico

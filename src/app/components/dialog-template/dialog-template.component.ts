@@ -9,5 +9,5 @@ import { MatDialogModule } from '@angular/material/dialog';
   styleUrl: './dialog-template.component.scss',
 })
 export class DialogTemplateComponent {
-  title = input<string | null>(null);
+  _title = input<string | null>(null);
 }

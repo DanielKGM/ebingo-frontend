@@ -1,4 +1,4 @@
-<app-dialog-template title="Histórico">
+<app-dialog-template _title="Histórico">
   <ul>
     @for (audit of audits; track $index) {
     <li>{{ audit.nickname }} - {{ audit.action }} - {{ audit.timestamp }}</li>

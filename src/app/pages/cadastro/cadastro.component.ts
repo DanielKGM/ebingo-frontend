@@ -50,7 +50,7 @@ export class CadastroComponent {
     private readonly router: Router
   ) {
     this.cadastroForm = this.fb.group({
-      nickname: ['', [Validators.required]],
+      nickname: ['', [Validators.required, Validators.maxLength(12)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],

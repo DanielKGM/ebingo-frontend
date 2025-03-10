@@ -15,6 +15,7 @@ import { GameService } from '../../services/game.service';
 import { SnackbarService } from '../../services/snackbar.service';
 import { GameWebsocketService } from '../../services/game.ws.service';
 import { PremioComponent } from '../../components/premio/premio.component';
+import { RankingDTO } from '../../dto/user.dto';
 
 @Component({
   selector: 'app-partida',
@@ -37,6 +38,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
   selectedTab = signal<string>('card');
   userId!: string;
   game: GameDto | null;
+  ranking: RankingDTO[] | null;
   gameId!: string;
   card!: CardDto | null;
   drawnNumbers: number[] = [];
@@ -53,6 +55,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
     let roles = localStorage.getItem('roles');
     this.isAdm = (roles! ? roles.split(',') : []).includes('ROLE_ADMIN');
     this.game = this.route.snapshot.data['game'];
+    this.ranking = [];
   }
 
   ngOnInit(): void {
@@ -63,6 +66,11 @@ export class PartidaComponent implements OnInit, OnDestroy {
     }
     this.userId = user.id!;
     this.gameId = this.game?.id!;
+    this.gameService.getRanking(this.gameId).subscribe({
+      next: (res) => {
+        this.ranking = res;
+      },
+    });
     this.drawnNumbers = this.game?.drawnNumbers!;
     this.connectWebsocket();
     this.loadCard();
@@ -71,10 +79,16 @@ export class PartidaComponent implements OnInit, OnDestroy {
   private connectWebsocket() {
     this.wsService.connect();
     this.wsService.subscribeToGame(this.gameId);
+    this.wsService.subscribeToRanking(this.gameId);
     this.wsService.gameUpdates$.subscribe((updatedGame) => {
       if (updatedGame) {
         this.game = updatedGame;
         this.drawnNumbers = updatedGame.drawnNumbers || [];
+      }
+    });
+    this.wsService.rankingUpdates$.subscribe((updatedRanking) => {
+      if (updatedRanking) {
+        this.ranking = updatedRanking;
       }
     });
   }
@@ -122,7 +136,7 @@ export class PartidaComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.game.winner) {
+    if (this.game.winner?.id) {
       this.snackbarService.showMessage(`O jogo já tem um vencedor.`);
       return;
     }
@@ -142,17 +156,12 @@ export class PartidaComponent implements OnInit, OnDestroy {
     });
   }
 
-  get formattedDate(): string {
-    const date =
-      this.game?.status === 'NAO_INICIADO' || this.game?.status === 'INICIADO'
-        ? this.game?.startTime
-        : this.game?.endTime;
-
+  formattedDate(date: Date | null | undefined): string {
     return date ? new Date(date).toLocaleString('pt-BR') : 'Sem data';
   }
 
   drawNewNumber(): void {
-    if (this.game?.winner) {
+    if (this.game?.winner?.id) {
       this.snackbarService.showMessage('O jogo já tem um vencedor!', 'bad');
       return;
     }

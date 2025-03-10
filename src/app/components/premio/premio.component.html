@@ -1,1 +1,11 @@
-<app-dialog-template title="Prêmio">{{ this.prize }}</app-dialog-template>
+<app-dialog-template _title="Prêmio">
+  <span class="text-lg mr-2">{{ this.prize }}</span>
+
+  <mat-icon
+    class="cursor-pointer"
+    matTooltip="Copiar"
+    (click)="copyToClipboard()"
+    (keyup)="copyToClipboard()"
+    >content_copy</mat-icon
+  >
+</app-dialog-template>

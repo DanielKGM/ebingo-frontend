@@ -56,7 +56,7 @@ export class PerfilComponent {
   ) {
     this.user = this.route.snapshot.data['user'];
     this.perfilForm = this.fb.group({
-      nickname: ['', Validators.required],
+      nickname: ['', [Validators.required, Validators.maxLength(12)]],
       email: [{ value: '', disabled: true }],
     });
   }
@@ -74,10 +74,7 @@ export class PerfilComponent {
 
   updateNickname() {
     if (this.perfilForm.invalid) {
-      this.snackbarService.showMessage(
-        'O apelido não pode estar vazio!',
-        'bad'
-      );
+      this.snackbarService.showMessage('O apelido não é válido!', 'bad');
       return;
     }
 

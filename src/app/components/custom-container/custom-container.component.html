@@ -1,10 +1,9 @@
 <div class="relative flex flex-col h-full w-full">
   @if (_title()) {
   <div
-    class="ttl self-{{
-      titleAlign()
-    }} text-center mx-8 px-4 py-1 rounded-lg w-fit -mb-5 bg-[var(--mat-sys-primary)] text-white uppercase font-bold z-10"
+    class="ttl text-center mx-8 px-4 py-1 rounded-lg w-fit -mb-5 bg-[var(--mat-sys-primary)] text-white uppercase font-bold z-10"
     style="box-shadow: var(--mat-sys-level1); z-index: 2"
+    [ngStyle]="{ 'align-self': titleAlign() }"
   >
     {{ _title() }}
   </div>

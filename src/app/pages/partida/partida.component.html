@@ -76,7 +76,7 @@
 
     <app-custom-container
       _title="PARTIDA"
-      titleAlign="end"
+      titleAlign="start"
       class="gameinfo"
       classes="h-full flex flex-col justify-between"
       [ngClass]="{ hidden: this.selectedTab() != 'gameinfo' }"
@@ -92,19 +92,28 @@
         <p>
           <span class="text-sm text-gray-500 block mt-2">Início</span>
           <strong class="text-base font-semibold block">{{
-            formattedDate
+            formattedDate(game?.startTime)
           }}</strong>
         </p>
+        @if (game?.endTime) {
+        <p>
+          <span class="text-sm text-gray-500 block mt-2">Fim</span>
+          <strong class="text-base font-semibold block">{{
+            formattedDate(game?.endTime)
+          }}</strong>
+        </p>
+        }
       </div>
       <!-- Container dos botões de ação -->
-      <div class="game-actions">
+      <div class="game-actions mt-6">
         <button
           mat-flat-button
           color="primary"
           class="action-button"
           (click)="showPremio()"
+          [disabled]="userId !== game?.winner?.id"
         >
-          Clamar Prêmio
+          Ver Prêmio
         </button>
         @if(isAdm){
         <button
@@ -123,17 +132,28 @@
       _title="RANKING"
       titleAlign="center"
       class="ranking"
-      [ngClass]="{
-        hidden: this.selectedTab() != 'ranking'
-      }"
+      [ngClass]="{ hidden: this.selectedTab() != 'ranking' }"
     >
       <div class="flex flex-col space-y-2">
-        @for (player of game?.players ?? []; track $index) { @if ($index !== 0)
-        {
-        <hr class="border-t-2 border-gray-300 my-4" />
-        }
-        <div class="flex items-center gap-2 w-full">
-          <span class="font-bold">{{ player.nickname }}</span>
+        @for (rank of ranking ?? []; track $index) {
+        <div class="flex items-center w-full justify-between">
+          <span
+            class="block truncate mr-2"
+            [ngClass]="{
+              'font-bold': $index === 0,
+              'text-[var(--mat-sys-primary)]': rank.id === userId
+            }"
+            >{{ rank.nickname }}</span
+          >
+          <span
+            [ngClass]="{
+              'font-bold': $index === 0,
+              'text-[var(--mat-sys-primary)]': rank.id === userId
+            }"
+            class="text-right"
+            >{{ rank.marked
+            }}<span class="text-xs text-gray-400">/{{ game?.cardSize }}</span>
+          </span>
         </div>
         }
       </div>

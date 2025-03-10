@@ -5,3 +5,9 @@ export interface UserDTO {
   password?: string;
   role?: string;
 }
+
+export interface RankingDTO {
+  id?: string;
+  nickname: string;
+  marked: number;
+}

@@ -3,7 +3,7 @@
 
 .dashboard {
   display: grid;
-  grid-template-columns: 0.6fr 2.4fr 1fr;
+  grid-template-columns: minmax(0, 0.8fr) 2fr 0.9fr;
   grid-template-rows: 0fr 1fr;
   gap: 1rem 1rem;
   grid-auto-flow: row;

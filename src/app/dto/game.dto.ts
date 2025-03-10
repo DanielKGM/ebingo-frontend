@@ -4,13 +4,12 @@ export interface GameDto {
   id?: string;
   roomName?: string;
   startTime?: Date;
-  endTime?: string;
-  prize?: string;
+  endTime?: Date;
   manualFill?: boolean;
   drawnNumbers?: number[];
-  players?: UserDTO[];
   winner?: UserDTO;
   cardSize?: number;
+  prize?: string;
   status?: 'NAO_INICIADO' | 'INICIADO' | 'ENCERRADO' | 'CANCELADO';
 }
 
@@ -19,7 +18,7 @@ export interface GameCardDto {
   roomName?: string;
   startTime?: Date;
   endTime?: string;
-  prize?: string;
+  prize?: boolean;
   manualFill?: boolean;
   players?: number;
   cardSize?: number;
