@@ -8,11 +8,12 @@ export const anonGuard: CanActivateFn = (route, state) => {
   const auth = inject(AuthService);
   return auth.getRoles().pipe(
     map((roles) => {
-      let ok = roles.length == 0;
-      if (!ok) {
+      let saia =
+        roles.includes('ROLE_USER') && roles.includes('ROLE_ANONYMOUS');
+      if (saia) {
         router.navigate(['/jogos']);
       }
-      return ok;
+      return !saia;
     }),
     catchError(() => {
       router.navigate(['']);
