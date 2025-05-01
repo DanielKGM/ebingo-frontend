@@ -1,59 +1,108 @@
-# EbingoFrontend
+<p align="right"><a id="readme-top" href="https://github.com/DanielKGM/ebingo-backend" target="_blank">Repositório do Back-End (Spring Boot)</a></p>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
+# Sobre o projeto
+## Objetivo
+**eBingo** é o que acredito ser o mínimo produto viável para um <i>website</i> de bingo interativo, onde usuários podem participar de partidas <i>online</i> e em tempo real. Este repositório contem a interface de usuário do projeto (<i>front-end</i>).
+## Fluxo Geral
+O usuário poderá criar sua conta, autenticar-se, procurar por partidas disponíveis, entrar em salas de jogo, gerar sua cartela e competir ou acompanhar o jogo em tempo real, desde que haja um administrador para orquestrar a partida. Adicionalmente, poderá ganhar **prêmios** (textos secretos disponíveis em cada sala de jogo) e conferir o seu perfil.
+## Funcionalidades
+- [X] Design responsivo;
+- [X] Design minimalista e intuitivo;
+- [X] Autenticação e registro de usuários;
+- [X] Jogador pode visualizar e editar seu perfil;
+- [X] Diferentes Permissões entre usuários comuns e administradores;
+- [X] Gerenciamento e criação de jogos pelos administradores;
+- [X] Usuários visualizar uma lista de jogos e entrar neles;
+- [X] Vencedor de cada jogo tem acesso a um texto exclusivo;
+- [X] Sistema exige autenticação para resgatar o prêmio;
+- [X] Gerar cartelas de bingo automaticamente para cada jogador;
+- [X] Cada jogo terá um ranking em tempo real;
+- [X] Sorteio de números pelos administradores e exibição dos resultados para todos os participantes em tempo real;
+- [X] O sistema valida automaticamente quando uma cartela completa a sequência vencedora;
+- [X] Preenchimento manual e obrigatório das cartelas.
+- [X] Filtro por nome e/ou por status na listagem de jogos;
+- [X] Usuários podem visualizar a sala sem entrar no jogo;
+- [X] Auditoria e histórico do jogo;
+- [X] Proteção de rotas.
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-## Development server
+# Estrutura do Website
+## Páginas
+* `Login`: autenticação dos usuários;
+* `Cadastro`: registro de novos usuários;
+* `Listagem`: listagem de todos os jogos ou a partir de filtro;
+* `Formulário de Jogo`: criar ou editar um jogo (administradores);
+* `Sala de jogo`: onde toda dinâmica do Bingo acontece. Os usuários poderão marcar suas cartelas e conferir números sorteados. Haverá também um ranking de jogadores, visualização do prêmio e histórico da partida;
+* `Sala de jogo (finalizado)`: ainda é possível visualizar o jogo e seu histórico, mesmo após concluído;
+* `Perfil`: informações do usuário, edição de apelido e listagem de prêmios conquistados.
 
-To start a local development server, run:
-
-```bash
-ng serve
+## Diagrama de Fluxo
+``` mermaid
+---
+config:
+  layout: elk
+  look: handDrawn
+  theme: neo
+---
+flowchart TB
+  LOGIN --> CADASTRO
+  CADASTRO --> LISTA_DE_JOGOS
+  LISTA_DE_JOGOS --> NOVO_JOGO
+  LISTA_DE_JOGOS --> SALA_DE_JOGO
+  NOVO_JOGO --> SALA_DE_JOGO
+  SALA_DE_JOGO --> PERFIL
 ```
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+# Tecnologias Utilizadas
+## JavaScript
+|  | Nome |
+|:---:|:---:|
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/angular.png"> | Angular |
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/typescript.png"> | TypeScript |
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/npm.png"> | npm |
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Comunicação
+|  | Nome |
+|:---:|:---:|
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/websocket.png"> | websocket |
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/http.png"> | HTTP |
 
-```bash
-ng generate component component-name
+## Web Dev
+|  | Nome |
+|:---:|:---:|
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/html.png"> | HTML |
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/css.png"> | CSS |
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/sass.png"> | Sass |
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/tailwind_css.png"> | Tailwind CSS |
+
+## DevOps
+|  | Nome |
+|:---:|:---:|
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png"> | Docker |
+<p align="right">(<a href="https://github.com/DanielKGM/ebingo-backend/blob/main/pom.xml">pom.xml</a>) (<a href="#readme-top">voltar ao topo</a>)</p>
+
+# Execução do Projeto em Contâiner
+## Requisitos
+* Baixe o [Git](https://git-scm.com/downloads) e o [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+## Passo a Passo
+1. Crie uma pasta para o projeto;
+2. Dentro dessa pasta, **clone** (ou baixe) os projetos `ebingo-frontend` e `ebingo-backend`, através dos comandos:
+ ```sh
+git clone https://github.com/DanielKGM/ebingo-backend
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
+ ```sh
+git clone https://github.com/DanielKGM/ebingo-frontend
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
+3. Abra o **Docker Desktop**, após algumas configurações básicas exigidas pelo instalador da aplicação;
+4. Vá para o diretório do projeto **ebingo-backend** (onde tem o arquivo `compose.yaml`) e execute o seguinte comando:
+ ```sh
+docker-compose up --build
 ```
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# Contribuições
+## Próximos Passos
+🔒
