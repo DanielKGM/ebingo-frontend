@@ -1,43 +1,57 @@
 <p align="right"><a id="readme-top" href="https://github.com/DanielKGM/ebingo-backend" target="_blank">Repositório do Back-End (Spring Boot)</a></p>
 
 # Sobre o projeto
+
+<center>
+<img src="https://i.imgur.com/elXjEnE.png" alt="eBingo logo">
+<p><strong>PARTIDAS DE BINGO ONLINE</strong></p>
+</center>
+
 ## Objetivo
+
 **eBingo** é o que acredito ser o mínimo produto viável para um <i>website</i> de bingo interativo, onde usuários podem participar de partidas <i>online</i> e em tempo real. Este repositório contem a interface de usuário do projeto (<i>front-end</i>).
+
 ## Fluxo Geral
+
 O usuário poderá criar sua conta, autenticar-se, procurar por partidas disponíveis, entrar em salas de jogo, gerar sua cartela e competir ou acompanhar o jogo em tempo real, desde que haja um administrador para orquestrar a partida. Adicionalmente, poderá ganhar **prêmios** (textos secretos disponíveis em cada sala de jogo) e conferir o seu perfil.
+
 ## Funcionalidades
-- [X] Design responsivo;
-- [X] Design minimalista e intuitivo;
-- [X] Autenticação e registro de usuários;
-- [X] Jogador pode visualizar e editar seu perfil;
-- [X] Diferentes Permissões entre usuários comuns e administradores;
-- [X] Gerenciamento e criação de jogos pelos administradores;
-- [X] Usuários visualizar uma lista de jogos e entrar neles;
-- [X] Vencedor de cada jogo tem acesso a um texto exclusivo;
-- [X] Sistema exige autenticação para resgatar o prêmio;
-- [X] Gerar cartelas de bingo automaticamente para cada jogador;
-- [X] Cada jogo terá um ranking em tempo real;
-- [X] Sorteio de números pelos administradores e exibição dos resultados para todos os participantes em tempo real;
-- [X] O sistema valida automaticamente quando uma cartela completa a sequência vencedora;
-- [X] Preenchimento manual e obrigatório das cartelas.
-- [X] Filtro por nome e/ou por status na listagem de jogos;
-- [X] Usuários podem visualizar a sala sem entrar no jogo;
-- [X] Auditoria e histórico do jogo;
-- [X] Proteção de rotas.
+
+- [x] Design responsivo;
+- [x] Design minimalista e intuitivo;
+- [x] Autenticação e registro de usuários;
+- [x] Jogador pode visualizar e editar seu perfil;
+- [x] Diferentes Permissões entre usuários comuns e administradores;
+- [x] Gerenciamento e criação de jogos pelos administradores;
+- [x] Usuários visualizar uma lista de jogos e entrar neles;
+- [x] Vencedor de cada jogo tem acesso a um texto exclusivo;
+- [x] Sistema exige autenticação para resgatar o prêmio;
+- [x] Gerar cartelas de bingo automaticamente para cada jogador;
+- [x] Cada jogo terá um ranking em tempo real;
+- [x] Sorteio de números pelos administradores e exibição dos resultados para todos os participantes em tempo real;
+- [x] O sistema valida automaticamente quando uma cartela completa a sequência vencedora;
+- [x] Preenchimento manual e obrigatório das cartelas.
+- [x] Filtro por nome e/ou por status na listagem de jogos;
+- [x] Usuários podem visualizar a sala sem entrar no jogo;
+- [x] Auditoria e histórico do jogo;
+- [x] Proteção de rotas.
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
 # Estrutura do Website
+
 ## Páginas
-* `Login`: autenticação dos usuários;
-* `Cadastro`: registro de novos usuários;
-* `Listagem`: listagem de todos os jogos ou a partir de filtro;
-* `Formulário de Jogo`: criar ou editar um jogo (administradores);
-* `Sala de jogo`: onde toda dinâmica do Bingo acontece. Os usuários poderão marcar suas cartelas e conferir números sorteados. Haverá também um ranking de jogadores, visualização do prêmio e histórico da partida;
-* `Sala de jogo (finalizado)`: ainda é possível visualizar o jogo e seu histórico, mesmo após concluído;
-* `Perfil`: informações do usuário, edição de apelido e listagem de prêmios conquistados.
+
+- `Login`: autenticação dos usuários;
+- `Cadastro`: registro de novos usuários;
+- `Listagem`: listagem de todos os jogos ou a partir de filtro;
+- `Formulário de Jogo`: criar ou editar um jogo (administradores);
+- `Sala de jogo`: onde toda dinâmica do Bingo acontece. Os usuários poderão marcar suas cartelas e conferir números sorteados. Haverá também um ranking de jogadores, visualização do prêmio e histórico da partida;
+- `Sala de jogo (finalizado)`: ainda é possível visualizar o jogo e seu histórico, mesmo após concluído;
+- `Perfil`: informações do usuário, edição de apelido e listagem de prêmios conquistados.
 
 ## Diagrama de Fluxo
-``` mermaid
+
+```mermaid
 ---
 config:
   layout: elk
@@ -52,57 +66,73 @@ flowchart TB
   NOVO_JOGO --> SALA_DE_JOGO
   SALA_DE_JOGO --> PERFIL
 ```
+
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
 # Tecnologias Utilizadas
-## JavaScript
-|  | Nome |
-|:---:|:---:|
-| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/angular.png"> | Angular |
-| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/typescript.png"> | TypeScript |
-| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/npm.png"> | npm |
 
+## JavaScript
+
+|                                                                                                                                    |    Nome    |
+| :--------------------------------------------------------------------------------------------------------------------------------: | :--------: |
+|  <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/angular.png">   |  Angular   |
+| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/typescript.png"> | TypeScript |
+|    <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/npm.png">     |    npm     |
 
 ## Comunicação
-|  | Nome |
-|:---:|:---:|
+
+|                                                                                                                                   |   Nome    |
+| :-------------------------------------------------------------------------------------------------------------------------------: | :-------: |
 | <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/websocket.png"> | websocket |
-| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/http.png"> | HTTP |
+|   <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/http.png">    |   HTTP    |
 
 ## Web Dev
-|  | Nome |
-|:---:|:---:|
-| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/html.png"> | HTML |
-| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/css.png"> | CSS |
-| <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/sass.png"> | Sass |
+
+|                                                                                                                                      |     Nome     |
+| :----------------------------------------------------------------------------------------------------------------------------------: | :----------: |
+|     <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/html.png">     |     HTML     |
+|     <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/css.png">      |     CSS      |
+|     <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/sass.png">     |     Sass     |
 | <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/tailwind_css.png"> | Tailwind CSS |
 
 ## DevOps
-|  | Nome |
-|:---:|:---:|
+
+|                                                                                                                                |  Nome  |
+| :----------------------------------------------------------------------------------------------------------------------------: | :----: |
 | <img height="50" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png"> | Docker |
+
 <p align="right">(<a href="https://github.com/DanielKGM/ebingo-backend/blob/main/pom.xml">pom.xml</a>) (<a href="#readme-top">voltar ao topo</a>)</p>
 
 # Execução do Projeto em Contâiner
+
 ## Requisitos
-* Baixe o [Git](https://git-scm.com/downloads) e o [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+
+- Baixe o [Git](https://git-scm.com/downloads) e o [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 ## Passo a Passo
+
 1. Crie uma pasta para o projeto;
 2. Dentro dessa pasta, **clone** (ou baixe) os projetos `ebingo-frontend` e `ebingo-backend`, através dos comandos:
- ```sh
+
+```sh
 git clone https://github.com/DanielKGM/ebingo-backend
 ```
- ```sh
+
+```sh
 git clone https://github.com/DanielKGM/ebingo-frontend
 ```
+
 3. Abra o **Docker Desktop**, após algumas configurações básicas exigidas pelo instalador da aplicação;
 4. Vá para o diretório do projeto **ebingo-backend** (onde tem o arquivo `compose.yaml`) e execute o seguinte comando:
- ```sh
+
+```sh
 docker-compose up --build
 ```
+
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
 # Contribuições
+
 ## Próximos Passos
+
 🔒
