@@ -1,17 +1,18 @@
 <p align="right"><a id="readme-top" href="https://github.com/DanielKGM/ebingo-backend" target="_blank">Repositório do Back-End (Spring Boot)</a></p>
 
-<img src="assets/logo.png" alt="eBingo logo" width="50%" align="center">
-<p><strong>PARTIDAS DE BINGO ONLINE</strong></p>
+<div align="center">
+<img src="assets/logo.png" alt="eBingo logo" width="50%" align="center"><br/><br/>
+<p align="center"><strong>PARTIDAS DE BINGO ONLINE</strong></p></div>
 
-**eBingo** é o mínimo produto viável para um <i>website</i> de bingo interativo, onde usuários podem participar de partidas <i>online</i> e em tempo real. Este repositório contem o <i>front-end</i> do projeto.
+<p align="justify"><strong>eBingo</strong> é o mínimo produto viável para um <i>website</i> de bingo interativo, onde usuários podem participar de partidas <i>online</i> e em tempo real. Este repositório contém o <i>front-end</i> do projeto.</p> 
 
 ## Fluxo Geral
 
-O usuário poderá criar sua conta, autenticar-se, procurar por partidas disponíveis, entrar em salas de jogo, gerar sua cartela e competir ou acompanhar o jogo em tempo real, desde que haja um administrador para orquestrar a partida.
+<p align="justify">O usuário poderá criar sua conta, autenticar-se e procurar por partidas disponíveis. Ao entrar na partida, procede por gerar sua cartela e competir contra outros jogadores, ou acompanhar o jogo em tempo real. Por enquanto, é necessário um administrador para orquestrar as partidas.</p>
 
-Adicionalmente, poderá ganhar **prêmios** (texto exclusivo) e conferir o seu perfil.
+<p align="justify">Adicionalmente, o usuário poderá ganhar <strong>prêmios</strong> (em formato de texto) e conferir o seu perfil.</p>
 
-## Funcionalidades
+## Funcionalidades Frontend
 
 - [x] Design responsivo;
 - [x] Design minimalista e intuitivo;
