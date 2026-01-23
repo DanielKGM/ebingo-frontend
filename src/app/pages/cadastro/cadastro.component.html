@@ -2,7 +2,9 @@
   <app-header [showSlogan]="true"> </app-header>
   <app-main [hasTwoContents]="true">
     <!-- Ilustração -->
-    <ng-container right-content></ng-container>
+    <ng-container right-content
+      ><div class="w-full h-full rounded-xl benefits"></div
+    ></ng-container>
     <!-- Formulário -->
     <ng-container left-content>
       <app-page-title
@@ -48,6 +50,7 @@
             type="password"
             formControlName="confirmPassword"
             autocomplete="on"
+            (keydown.enter)="onSubmit()"
           />
         </mat-form-field>
       </form>

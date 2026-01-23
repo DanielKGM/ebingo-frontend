@@ -50,12 +50,8 @@ a:hover {
 html {
   overflow: hidden;
   background: #4776e6;
-  background: -webkit-linear-gradient(
-    top,
-    #8e54e9,
-    #4776e6
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to top, #8e54e9, #4776e6);
+  background: -webkit-linear-gradient(left, #8e54e9, #4776e6);
+  background: linear-gradient(to left, #8e54e9, #4776e6);
 }
 
 /* Corpo e estilos globais Material */

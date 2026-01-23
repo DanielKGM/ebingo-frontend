@@ -5,10 +5,15 @@
         >assignment</mat-icon
       >Como jogar?
     </a>
-    <mat-icon (click)="openTutorial()" (keyup)="openTutorial()" mobile-buttons
-      >assignment</mat-icon
+    <span
+      class="flex items-center justify-center gap-1"
+      (click)="openTutorial()"
+      (keyup)="openTutorial()"
+      mobile-buttons
     >
-    <a class="text-sm" mobile-buttons>Como jogar?</a>
+      <mat-icon>assignment</mat-icon>
+      <a class="text-sm">Como jogar?</a></span
+    >
   </app-header>
   <app-main>
     <!-- PESQUISA -->
@@ -48,17 +53,17 @@
     </form>
     <!-- LISTAGEM -->
     @for (game of games; track $index) {
-    <app-game-card [game]="game"></app-game-card>
+      <app-game-card [game]="game"></app-game-card>
     }
     <!-- Ações -->
     @if (isAdm) {
-    <app-action-buttons [showSeparator]="false" footer-content>
-      <!-- Segundo botão -->
-      <button mat-flat-button button2 routerLink="form">
-        <mat-icon>add</mat-icon>
-        Novo Jogo
-      </button>
-    </app-action-buttons>
+      <app-action-buttons [showSeparator]="false" footer-content>
+        <!-- Segundo botão -->
+        <button mat-flat-button button2 routerLink="form">
+          <mat-icon>add</mat-icon>
+          Novo Jogo
+        </button>
+      </app-action-buttons>
     }
   </app-main>
   <app-footer> </app-footer>

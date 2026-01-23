@@ -8,35 +8,35 @@
     class="flex items-center space-x-4 absolute right-0 top-0.5 -translate-y-0.5 h-full menu-actions"
   >
     @if (showUserInfo()) {
-    <app-user-info></app-user-info>
+      <app-user-info></app-user-info>
     }
     <ng-content select="[right-content]"></ng-content>
   </div>
 
   <div id="mobile-menu" class="flex items-center gap-2">
     @if (showUserInfo()) {
-    <div class="flex items-center gap-2" [matMenuTriggerFor]="menu">
-      <mat-icon>account_circle</mat-icon>
-      <a class="text-sm" [matMenuTriggerFor]="menu">Perfil</a>
-    </div>
-    <mat-menu #menu="matMenu" class="mt-1">
-      <button mat-menu-item routerLink="/perfil">
+      <div class="flex items-center gap-2" [matMenuTriggerFor]="menu">
         <mat-icon>account_circle</mat-icon>
-        <span>Perfil</span>
-      </button>
-      <button mat-menu-item (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Deslogar</span>
-      </button>
-    </mat-menu>
+        <a class="text-sm" [matMenuTriggerFor]="menu">Perfil</a>
+      </div>
+      <mat-menu #menu="matMenu" class="mt-1">
+        <button mat-menu-item routerLink="/perfil">
+          <mat-icon>account_circle</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Deslogar</span>
+        </button>
+      </mat-menu>
     }
     <ng-content select="[mobile-buttons]"></ng-content>
   </div>
 
   <app-logo [smaller]="!showSlogan()"> </app-logo>
   @if (showSlogan()) {
-  <span class="text-lg font-bold block text-center mt-1.5" id="slogan"
-    >PARTIDAS DE BINGO ONLINE</span
-  >
+    <span class="text-lg font-bold block text-center mt-1.5" id="slogan"
+      >PARTIDAS DE BINGO ONLINE</span
+    >
   }
 </header>

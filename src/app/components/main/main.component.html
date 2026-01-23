@@ -1,20 +1,20 @@
 <main [class]="hasTwoContents() ? '' : 'default'">
   <ng-content select="[title-content]"></ng-content>
-  @if(hasTwoContents()){
-  <div class="grid-container overflow-y-auto">
-    <div class="grid-item py-8 pl-8 pr-4">
-      <ng-content select="[left-content]"></ng-content>
+  @if (hasTwoContents()) {
+    <div class="grid-container overflow-y-auto">
+      <div class="grid-item py-8 pl-8 pr-4">
+        <ng-content select="[left-content]"></ng-content>
+      </div>
+      <div class="grid-item py-8 pr-8 pl-4">
+        <ng-content select="[right-content]"></ng-content>
+      </div>
     </div>
-    <div class="grid-item py-8 pr-8 pl-4">
-      <ng-content select="[right-content]"></ng-content>
-    </div>
-  </div>
   } @else {
-  <div
-    class="overflow-auto !p-4 rounded-xl bg-[rgb(159,189,201)] flex-grow content"
-  >
-    <ng-content></ng-content>
-  </div>
+    <div
+      class="overflow-auto !p-4 rounded-xl bg-[rgb(159,189,201)] flex-grow content"
+    >
+      <ng-content></ng-content>
+    </div>
   }
   <ng-content select="[footer-content]"></ng-content>
 </main>

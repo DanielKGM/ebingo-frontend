@@ -23,7 +23,7 @@ export class SnackbarService {
   showMessage(
     message: string,
     type: TipoMensagem = 'default',
-    duration: number = 3000
+    duration: number = 3000,
   ) {
     this.setSnackbarColor(type);
 
@@ -34,7 +34,7 @@ export class SnackbarService {
         this.snackBar.openFromComponent(SnackbarComponent, {
           data: { message, type },
           duration,
-          horizontalPosition: 'center',
+          horizontalPosition: 'right',
           verticalPosition: 'bottom',
         });
       });

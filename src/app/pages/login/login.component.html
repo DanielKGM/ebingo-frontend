@@ -16,7 +16,9 @@
   <app-header [showSlogan]="true"> </app-header>
   <app-main [hasTwoContents]="true">
     <!-- Ilustração -->
-    <ng-container left-content></ng-container>
+    <ng-container left-content
+      ><div class="w-full h-full rounded-xl welcome"></div
+    ></ng-container>
     <!-- Formulário -->
     <ng-container right-content>
       <app-page-title
@@ -44,6 +46,7 @@
             [type]="hide() ? 'password' : 'text'"
             formControlName="password"
             autocomplete="on"
+            (keydown.enter)="onSubmit()"
           />
           <button
             type="button"
