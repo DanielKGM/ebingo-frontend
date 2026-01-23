@@ -2,16 +2,16 @@
   <ng-content select="[title-content]"></ng-content>
   @if (hasTwoContents()) {
     <div class="grid-container overflow-y-auto">
-      <div class="grid-item py-8 pl-8 pr-4">
+      <div class="grid-item py-8 pl-8 pr-4 relative">
         <ng-content select="[left-content]"></ng-content>
       </div>
-      <div class="grid-item py-8 pr-8 pl-4">
+      <div class="grid-item py-8 pr-8 pl-4 relative">
         <ng-content select="[right-content]"></ng-content>
       </div>
     </div>
   } @else {
     <div
-      class="overflow-auto !p-4 rounded-xl bg-[rgb(159,189,201)] flex-grow content"
+      class="overflow-auto !p-4 rounded-xl bg-[var(--mat-sys-surface-variant)] flex-grow content shadow-inner"
     >
       <ng-content></ng-content>
     </div>

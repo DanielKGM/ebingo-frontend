@@ -109,15 +109,30 @@ export class FormularioJogoComponent implements OnInit {
 
     if (this.gameId) {
       this.gameService.getPrize(this.gameId).subscribe({
-        next: (response) => {
-          this.gameForm.patchValue({ prize: response.prize });
+        next: (res) => {
+          let prize: string = res.prize;
+          let noValue: boolean =
+            !prize ||
+            prize === null ||
+            prize === undefined ||
+            prize.trim().length === 0;
+          if (noValue) {
+            this.disablePrize();
+            return;
+          }
+
+          this.gameForm.patchValue({ prize: prize });
         },
         error: () => {
-          this.gameForm.patchValue({ prize: '*****' });
-          this.gameForm.get('prize')?.disable();
+          this.disablePrize();
         },
       });
     }
+  }
+
+  private disablePrize() {
+    this.gameForm.patchValue({ prize: '*****' });
+    this.gameForm.get('prize')?.disable();
   }
 
   private convertDate(date: Date | null): Date {
