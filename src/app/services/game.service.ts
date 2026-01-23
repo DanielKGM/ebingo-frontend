@@ -68,7 +68,7 @@ export class GameService {
   markNumber(
     gameId: string,
     userId: string,
-    number: number
+    number: number,
   ): Observable<number[]> {
     return this.http.post<number[]>(`${this.apiUrl}/${gameId}/mark`, null, {
       params: {
@@ -88,9 +88,9 @@ export class GameService {
     return this.http.get<RankingDTO[]>(`${this.apiUrl}/${gameId}/ranking`);
   }
 
-  // Buscar o prêmio do jogo para um usuário específico
-  getPrize(gameId: string): Observable<string> {
-    return this.http.get<string>(`${this.apiUrl}/${gameId}/prize`);
+  // Buscar o prêmio do jogo
+  getPrize(gameId: string): Observable<{ prize: string }> {
+    return this.http.get<{ prize: string }>(`${this.apiUrl}/${gameId}/prize`);
   }
 
   getUserCard(gameId: string, userId: string): Observable<CardDto> {

@@ -66,7 +66,7 @@ export class FormularioJogoComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly fb: FormBuilder,
-    private readonly snackbarService: SnackbarService
+    private readonly snackbarService: SnackbarService,
   ) {
     this.gameForm = this.fb.group({
       roomName: ['', Validators.required],
@@ -99,12 +99,23 @@ export class FormularioJogoComponent implements OnInit {
   // Preenche os campos do formulário com os dados do jogo
   loadGameDetails(game: GameDto): void {
     if (game) {
-      this.gameForm.setValue({
+      this.gameForm.patchValue({
         roomName: game.roomName,
         startTime: game.startTime,
-        prize: game.prize,
         cardSize: game.cardSize,
         manualFill: game.manualFill,
+      });
+    }
+
+    if (this.gameId) {
+      this.gameService.getPrize(this.gameId).subscribe({
+        next: (response) => {
+          this.gameForm.patchValue({ prize: response.prize });
+        },
+        error: () => {
+          this.gameForm.patchValue({ prize: '*****' });
+          this.gameForm.get('prize')?.disable();
+        },
       });
     }
   }
@@ -113,7 +124,7 @@ export class FormularioJogoComponent implements OnInit {
     if (!date) return new Date();
     const parsedDate = date instanceof Date ? date : new Date(date);
     return new Date(
-      parsedDate.getTime() - parsedDate.getTimezoneOffset() * 60000
+      parsedDate.getTime() - parsedDate.getTimezoneOffset() * 60000,
     );
   }
 
@@ -121,7 +132,7 @@ export class FormularioJogoComponent implements OnInit {
     if (this.gameForm.invalid) {
       this.snackbarService.showMessage(
         'Preencha todos os campos corretamente!',
-        'bad'
+        'bad',
       );
       return;
     }
@@ -141,14 +152,14 @@ export class FormularioJogoComponent implements OnInit {
         next: () => {
           this.snackbarService.showMessage(
             'Jogo atualizado com sucesso!',
-            'good'
+            'good',
           );
           this.goBack();
         },
         error: (error) => {
           this.snackbarService.showMessage(
             error?.error?.message || 'Erro ao atualizar jogo!',
-            'bad'
+            'bad',
           );
         },
       });
@@ -162,7 +173,7 @@ export class FormularioJogoComponent implements OnInit {
         error: (error) => {
           this.snackbarService.showMessage(
             error?.error?.message || 'Erro ao criar jogo!',
-            'bad'
+            'bad',
           );
         },
       });
