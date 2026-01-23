@@ -9,14 +9,14 @@ import { Component, input, OnInit, signal } from '@angular/core';
 export class LogoComponent implements OnInit {
   smaller = input.required<boolean>();
   ballSize = signal('80px');
-  textSize = signal('3rem');
-  borderSize = signal('3px');
+  textSize = signal('2.5rem');
+  borderSize = signal('4px');
 
   ngOnInit() {
     if (this.smaller()) {
       this.ballSize.set('60px');
-      this.textSize.set('2rem');
-      this.borderSize.set('2.5px');
+      this.textSize.set('1.8rem');
+      this.borderSize.set('3px');
     }
   }
 }

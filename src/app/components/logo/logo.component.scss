@@ -15,27 +15,144 @@
 .ball {
   cursor: grab;
   position: relative;
-  margin-left: -10px;
+  margin-left: -1.5px;
   box-sizing: border-box;
+
   background: white;
-  border: var(--bordersize, 3px) solid black;
+  border: var(--bordersize, 3px) solid #242424;
   color: black;
   width: var(--bsize, 80px);
   height: var(--bsize, 80px);
   font-size: var(--txtsize, 3rem);
+
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  box-shadow: 5px 5px 10px 2px rgba(255, 255, 255, 0.3) inset,
+
+  box-shadow:
+    5px 5px 10px 2px rgba(255, 255, 255, 0.3) inset,
     -5px -5px 10px 10px rgba(0, 0, 0, 0.3) inset,
-    0 0 0 6px var(--bcolor, tomato) inset, 0 0 0 8px white inset,
-    0 0 0 11px var(--bcolor, tomato) inset;
+    0 0 0 8px var(--bcolor, purple) inset,
+    0 0 0 10px white inset,
+    0 0 0 14px var(--bcolor, purple) inset;
+
+  overflow: hidden;
 }
 
 .ball:hover {
-  transform: translate(0, -10%);
+  transform: translate(0, -5%);
+  z-index: 10;
+}
+
+.ball .content {
+  z-index: 1;
+  position: relative;
+  font-weight: bold;
+}
+
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none; /* Deixa clicar através do brilho */
+}
+
+/* traço pequeno de brilho intenso */
+.glass-highlight {
+  width: 6px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  z-index: 2;
+  transform: rotate(320deg);
+  top: 16%;
+  left: 16%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* 2. Camada de Luz Superior */
+.glass-light {
+  @include full-size;
+  z-index: 2;
+
+  /* Brilho Difuso Superior Direito */
+  &:before {
+    content: "";
+    @include full-size;
+    top: 0;
+    right: -10px;
+    background: radial-gradient(
+      circle at 100% 0px,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0) 58%
+    );
+    filter: blur(5px);
+  }
+
+  /* Reflexo de Borda Superior Esquerdo */
+  &:after {
+    content: "";
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 50%;
+    background-image: linear-gradient(
+      -180deg,
+      rgba(255, 255, 255, 0.5) 10%,
+      rgba(255, 255, 255, 0) 50%
+    );
+    transform: rotate(320deg);
+    filter: blur(2px);
+  }
+}
+
+/* 3. Camada de Sombra Inferior */
+.glass-dark {
+  @include full-size;
+  z-index: 2;
+
+  /* Sombra Inferior Esquerda */
+  &:before {
+    content: "";
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    border-radius: 50%;
+    /* Sombra escura suave */
+    background: radial-gradient(
+      circle at 100% 0px,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0) 60%
+    );
+    filter: blur(3px);
+    transform: rotate(150deg);
+  }
+
+  /* Sombra Inferior Direita Profunda */
+  &:after {
+    content: "";
+    @include full-size;
+    bottom: -10px;
+    right: 0;
+    /* Sombra mais forte */
+    background: radial-gradient(
+      circle at 100% 0px,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0) 50%
+    );
+    filter: blur(5px);
+    transform: rotate(90deg);
+  }
 }
 
 @media (max-width: res.$w-mobile) {

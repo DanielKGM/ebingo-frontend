@@ -48,7 +48,7 @@ export class LoginComponent {
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly router: Router,
-    private readonly snackbarService: SnackbarService
+    private readonly snackbarService: SnackbarService,
   ) {
     this.loginForm = this.fb.group({
       nickname: ['', Validators.required],
@@ -65,7 +65,7 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       this.snackbarService.showMessage(
         'Preencha todos os campos corretamente!',
-        'bad'
+        'bad',
       );
       return;
     }
@@ -79,7 +79,7 @@ export class LoginComponent {
       error: () => {
         this.snackbarService.showMessage(
           'Credenciais inválidas. Tente novamente.',
-          'bad'
+          'bad',
         );
       },
     });

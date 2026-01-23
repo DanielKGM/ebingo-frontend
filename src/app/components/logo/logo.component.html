@@ -4,10 +4,45 @@
   [style.--txtsize]="textSize()"
   [style.--bordersize]="borderSize()"
 >
-  <span class="ball">e</span>
-  <span class="ball" [style.--bcolor]="'purple'">B</span>
-  <span class="ball" [style.--bcolor]="'green'">I</span>
-  <span class="ball" [style.--bcolor]="'#de4d86'">N</span>
-  <span class="ball" [style.--bcolor]="'gray'">G</span>
-  <span class="ball" [style.--bcolor]="'blue'">O</span>
+  <span class="ball">
+    <div class="glass-highlight"></div>
+    <span class="content">e</span>
+    <div class="glass-dark"></div>
+    <div class="glass-light"></div>
+  </span>
+
+  <span class="ball" [style.--bcolor]="'tomato'">
+    <div class="glass-highlight"></div>
+    <span class="content">B</span>
+    <div class="glass-dark"></div>
+    <div class="glass-light"></div>
+  </span>
+
+  <span class="ball" [style.--bcolor]="'green'">
+    <div class="glass-highlight"></div>
+    <span class="content">I</span>
+    <div class="glass-dark"></div>
+    <div class="glass-light"></div>
+  </span>
+
+  <span class="ball" [style.--bcolor]="'#de4d86'">
+    <div class="glass-highlight"></div>
+    <span class="content">N</span>
+    <div class="glass-dark"></div>
+    <div class="glass-light"></div>
+  </span>
+
+  <span class="ball" [style.--bcolor]="'gray'">
+    <div class="glass-highlight"></div>
+    <span class="content">G</span>
+    <div class="glass-dark"></div>
+    <div class="glass-light"></div>
+  </span>
+
+  <span class="ball" [style.--bcolor]="'blue'">
+    <div class="glass-highlight"></div>
+    <span class="content">O</span>
+    <div class="glass-dark"></div>
+    <div class="glass-light"></div>
+  </span>
 </h1>

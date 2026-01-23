@@ -7,9 +7,6 @@
 @tailwind utilities;
 
 :root {
-  --or: 239, 118, 39;
-  --lt-or: 255, 154, 86;
-  --dk-rose: 163, 2, 98;
   --content-font: Quicksand, sans-serif;
   --logo-font: Sour Gummy, sans-serif;
 }
@@ -51,12 +48,14 @@ a:hover {
 }
 
 html {
-  background: linear-gradient(
-    rgba(var(--dk-rose), 1) 0%,
-    rgba(var(--lt-or), 1) 80%,
-    rgba(var(--or), 1) 100%
-  );
   overflow: hidden;
+  background: #4776e6;
+  background: -webkit-linear-gradient(
+    top,
+    #8e54e9,
+    #4776e6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #8e54e9, #4776e6);
 }
 
 /* Corpo e estilos globais Material */
@@ -64,6 +63,7 @@ html {
 body {
   width: 70%;
   font-family: var(--content-font);
+  background: transparent !important;
 
   margin: 0 auto;
   padding: 2rem 0;

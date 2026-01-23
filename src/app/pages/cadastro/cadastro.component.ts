@@ -47,7 +47,7 @@ export class CadastroComponent {
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly snackbarService: SnackbarService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {
     this.cadastroForm = this.fb.group({
       nickname: ['', [Validators.required, Validators.maxLength(12)]],
@@ -86,14 +86,14 @@ export class CadastroComponent {
         if (control?.hasError('required')) {
           this.snackbarService.showMessage(
             `Preencha os campos obrigatórios!`,
-            'bad'
+            'bad',
           );
         } else if (control?.hasError('email')) {
           this.snackbarService.showMessage('E-mail inválido!', 'bad');
         } else if (control?.hasError('minlength')) {
           this.snackbarService.showMessage(
             `A senha deve ter no mínimo 6 caracteres!`,
-            'bad'
+            'bad',
           );
         }
         return;
@@ -106,14 +106,14 @@ export class CadastroComponent {
       next: (response) => {
         this.snackbarService.showMessage(
           'Cadastro realizado com sucesso!',
-          'good'
+          'good',
         );
         this.router.navigate(['/jogos']);
       },
       error: (error) => {
         this.snackbarService.showMessage(
           'Erro ao criar o usuário. Tente novamente.',
-          'bad'
+          'bad',
         );
       },
     });
