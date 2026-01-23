@@ -1,9 +1,7 @@
 <p align="right"><a id="readme-top" href="https://github.com/DanielKGM/ebingo-backend" target="_blank">Repositório do Back-End (Spring Boot)</a></p>
 
-<center>
-<img src="assets/logo.png" alt="eBingo logo">
+<img src="assets/logo.png" alt="eBingo logo" width="50%" align="center">
 <p><strong>PARTIDAS DE BINGO ONLINE</strong></p>
-</center>
 
 **eBingo** é o mínimo produto viável para um <i>website</i> de bingo interativo, onde usuários podem participar de partidas <i>online</i> e em tempo real. Este repositório contem o <i>front-end</i> do projeto.
 
