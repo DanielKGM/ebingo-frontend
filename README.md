@@ -1,19 +1,17 @@
 <p align="right"><a id="readme-top" href="https://github.com/DanielKGM/ebingo-backend" target="_blank">Repositório do Back-End (Spring Boot)</a></p>
 
-# Sobre o projeto
-
 <center>
-<img src="https://i.imgur.com/elXjEnE.png" alt="eBingo logo">
+<img src="assets/logo.png" alt="eBingo logo">
 <p><strong>PARTIDAS DE BINGO ONLINE</strong></p>
 </center>
 
-## Objetivo
-
-**eBingo** é o que acredito ser o mínimo produto viável para um <i>website</i> de bingo interativo, onde usuários podem participar de partidas <i>online</i> e em tempo real. Este repositório contem a interface de usuário do projeto (<i>front-end</i>).
+**eBingo** é o mínimo produto viável para um <i>website</i> de bingo interativo, onde usuários podem participar de partidas <i>online</i> e em tempo real. Este repositório contem o <i>front-end</i> do projeto.
 
 ## Fluxo Geral
 
-O usuário poderá criar sua conta, autenticar-se, procurar por partidas disponíveis, entrar em salas de jogo, gerar sua cartela e competir ou acompanhar o jogo em tempo real, desde que haja um administrador para orquestrar a partida. Adicionalmente, poderá ganhar **prêmios** (textos secretos disponíveis em cada sala de jogo) e conferir o seu perfil.
+O usuário poderá criar sua conta, autenticar-se, procurar por partidas disponíveis, entrar em salas de jogo, gerar sua cartela e competir ou acompanhar o jogo em tempo real, desde que haja um administrador para orquestrar a partida.
+
+Adicionalmente, poderá ganhar **prêmios** (texto exclusivo) e conferir o seu perfil.
 
 ## Funcionalidades
 
@@ -37,9 +35,7 @@ O usuário poderá criar sua conta, autenticar-se, procurar por partidas dispon�
 - [x] Proteção de rotas.
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-# Estrutura do Website
-
-## Páginas
+# Estrutura
 
 - `Login`: autenticação dos usuários;
 - `Cadastro`: registro de novos usuários;
@@ -68,6 +64,12 @@ flowchart TB
 ```
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+
+# Capturas de Tela
+
+<center><img src="assets/login_desktop.png" alt="login desktop" width="80%"></center> <center><img src="assets/login_mobile.png" alt="login mobile" width="50%"> </center><center><img src="assets/game_desktop.png" alt="tela de jogo"  width="80%"></center> <center><img src="assets/game_mobile.png" alt="tela de jogo mobile"  width="50%"></center>
+
+<p align="right">(<a href="assets">mais capturas de tela</a>)  (<a href="#readme-top">voltar ao topo</a>)</p>
 
 # Tecnologias Utilizadas
 
@@ -130,9 +132,3 @@ docker-compose up --build
 ```
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
-
-# Contribuições
-
-## Próximos Passos
-
-🔒

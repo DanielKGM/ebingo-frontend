@@ -14,7 +14,8 @@ dist/
 .sass-cache/
 *.so
 .env
-Dockerfile
+Dockerfile*
 .dockerignore
 .vscode/
 .idea/
+docker-compose*
